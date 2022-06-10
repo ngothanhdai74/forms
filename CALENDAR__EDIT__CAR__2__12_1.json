@@ -1,0 +1,480 @@
+{
+    "Controls": [
+        {
+            "Name": "Row1",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "CreatedByName",
+                    "Title": "Người đăng ký",
+                    "Control": 10,
+                    "props": {
+                        "disabled": true
+                    }
+                },
+                {
+                    "Name": "Props.PhoneNum",
+                    "Title": "Số điện thoại liên hệ",
+                    "Control": 10,
+                    "Validations": {
+                        "Required": true,
+                        "Regular": {
+                            "Expression": "(09|03|07|08|05)+([0-9]{8})$",
+                            "ErrorMessage": "Nhập sai định dạng"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row1A",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Body",
+                    "Title": "Tiêu đề",
+                    "Control": 10,
+                    "ControlClass": "p-md-10 p-col-12",
+                    "Validations": {
+                        "Required": true,
+                        "MaxLength": 500
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row2",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.Manager",
+                    "Title": "Trưởng đoàn",
+                    "Control": 94,
+                    "Validations": {
+                        "Required": true
+                    },
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/ums/User/GetAll?isGetLocked=true",
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "ValueTemplate": "<%=ID%>:#<%=LoginName%>:#<%=FullName%>:#<%=RoleName%>",
+                    "ItemTemplate": "<%=LoginName%>|<%=FullName%>",
+                    "SelectedItemTemplate": "<%=Name%>",
+                    "Large": true,
+                    "props": {
+                        "field": "LoginName|%Name",
+                        "multiple": false,
+                        "forceSelection": true,
+                        "autoHighlight": true,
+                        "dropdown": true
+                    }
+                },
+                {
+                    "Name": "Props.ManagerRoleName",
+                    "Title": "Chức vụ",
+                    "Control": 10,
+                    "props": {
+                        "disabled": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row3",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.Leader",
+                    "Control": 94,
+                    "Title": "Lãnh đạo phê duyệt",
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/ums/User/GetAll?isGetLocked=true",
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "ValueTemplate": "<%=ID%>:#<%=LoginName%>:#<%=FullName%>:#<%=RoleName%>",
+                    "ItemTemplate": "<%=LoginName%>|<%=FullName%>",
+                    "SelectedItemTemplate": "<%=Name%>",
+                    "Large": true,
+                    "props": {
+                        "field": "LoginName|%Name",
+                        "multiple": false,
+                        "forceSelection": true,
+                        "autoHighlight": true,
+                        "dropdown": true
+                    },
+                    "Validations": {
+                        "Required": true
+                    }
+                },
+                {
+                    "Name": "Props.LeaderRoleName",
+                    "Control": 10,
+                    "Title": "Chức vụ",
+                    "props": {
+                        "disabled": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row4",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.Unit",
+                    "Control": 94,
+                    "Title": "Đơn vị",
+                    "Validations": {
+                        "Required": true
+                    },
+                    "ControlClass": "p-col-12 p-md-10",
+                    "Large": true,
+                    "props": {
+                        "field": "Code|%Name",
+                        "multiple": false,
+                        "forceSelection": true,
+                        "autoHighlight": true,
+                        "dropdown": true
+                    },
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/ums/Organization/GetOrgByParentAndType?orgCode=BTC&type=0&getParent=true",
+                        "payload": {},
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "ValueTemplate": "<%=ID%>:#<%=Code%>:#<%=Name%>",
+                    "ItemTemplate": "<%=Code%>|<%=Name%>",
+                    "SelectedItemTemplate": "<%=Name%>"
+                }
+            ]
+        },
+        {
+            "Name": "Row5",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.Driver",
+                    "Control": 94,
+                    "Title": "Lái xe",
+                    "Validations": {
+                        "Required": true
+                    },
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/ctl/Catalog/GetByCategory?category=Drivers&includeProps=true",
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "ValueTemplate": "<%=ID%>:#<%=Name%>:#<%=Name%>",
+                    "SelectedItemTemplate": "<%=Name%>",
+                    "Large": true,
+                    "props": {
+                        "field": "Name",
+                        "multiple": false,
+                        "forceSelection": true,
+                        "autoHighlight": true,
+                        "dropdown": true
+                    }
+                },
+                {
+                    "Name": "Props.PhoneNumDriver",
+                    "Control": 10,
+                    "Title": "Số điện thoại lái xe",
+                    "props": {
+                        "disabled": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row5A",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.CarValue",
+                    "Control": 0,
+                    "Title": "Xe",
+                    "Validations": {
+                        "Required": true
+                    },
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/cal/CalendarResource/GetByTypeCode?code=XE",
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "ValueTemplate": "<%=ID%>:#<%=Code%>:#<%=Code%>",
+                    "Large": true,
+                    "props": {
+                        "field": "Code",
+                        "multiple": false,
+                        "forceSelection": true,
+                        "autoHighlight": true,
+                        "dropdown": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row6",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.Area",
+                    "Control": 6,
+                    "Title": "Địa bàn phục vụ",
+                    "Validations": {
+                        "Required": true
+                    },
+                    "props": {
+                        "options": [
+                            {
+                                "Code": "1",
+                                "Name": "Nội tỉnh"
+                            },
+                            {
+                                "Code": "2",
+                                "Name": "Ngoại tỉnh"
+                            }
+                        ],
+                        "optionLabel": "Name",
+                        "optionValue": "Code"
+                    }
+                },
+                {
+                    "Name": "Props.NumPerson",
+                    "Control": 10,
+                    "Title": "Số lượng người",
+                    "Validations": {
+                        "Required": true
+                    },
+                    "props": {
+                        "keyfilter": "pint"
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row7",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Location",
+                    "Control": 10,
+                    "Title": "Nơi đến",
+                    "ControlClass": "p-col-12 p-md-10",
+                    "Validations": {
+                        "Required": true,
+                        "MaxLength": 500
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row8",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.PickUpPlace",
+                    "Control": 10,
+                    "Title": "Nơi đón",
+                    "ControlClass": "p-col-12 p-md-10",
+                    "Validations": {
+                        "Required": true,
+                        "MaxLength": 500
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row9",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "StartTime",
+                    "Control": 1,
+                    "Title": "Ngày, giờ đi",
+                    "Validations": {
+                        "Required": true,
+                        "Formula": {
+                            "Expression": "<%=(StartTime > EndTime)%>",
+                            "ErrorMessage": "Ngày, giờ đi không lớn hơn Ngày,giờ về"
+                        }
+                    },
+                    "props": {
+                        "dateFormat": "dd/mm/yy",
+                        "mask": "99/99/9999",
+                        "showIcon": true,
+                        "showOnFocus": false,
+                        "showTime": true
+                    }
+                },
+                {
+                    "Name": "EndTime",
+                    "Control": 1,
+                    "Title": "Ngày, giờ về",
+                    "Validations": {
+                        "Required": true,
+                        "Formula": {
+                            "Expression": "<%=(StartTime > EndTime)%>",
+                            "ErrorMessage": "Ngày, giờ đi không lớn hơn Ngày,giờ về"
+                        }
+                    },
+                    "props": {
+                        "dateFormat": "dd/mm/yy",
+                        "mask": "99/99/9999",
+                        "showIcon": true,
+                        "showOnFocus": false,
+                        "showTime": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row10",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.DateMove",
+                    "Title": "Ngày điều động",
+                    "Control": 1,
+                    "ControlClass": "p-col-12 p-md-10",
+                    "Validations": {},
+                    "props": {
+                        "dateFormat": "dd/mm/yy",
+                        "mask": "99/99/9999",
+                        "showIcon": true,
+                        "showOnFocus": false,
+                        "showTime": true,
+                        "disabled": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row11",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Created",
+                    "Title": "Thời gian đăng ký",
+                    "Control": 1,
+                    "ControlClass": "p-col-12 p-md-10",
+                    "Validations": {},
+                    "props": {
+                        "dateFormat": "dd/mm/yy",
+                        "mask": "99/99/9999",
+                        "showIcon": true,
+                        "showOnFocus": false,
+                        "showTime": true,
+                        "disabled": true
+                    }
+                }
+            ]
+        },
+		{
+			"Name": "RowFile",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "ContentStreams",
+					"Title": "Kế hoạch công tác được phê duyệt chủ chương đi công tác",
+					"Control": 57,
+					"DocumentStoreId": 7,
+					"ContentType": "0",
+					"MultiValue": true,
+					"Large": true,
+					"props": {
+						"maxFileSize": 1048576,
+						"auto": true,
+						"customUpload": true
+					}
+				}
+			]
+		},
+        {
+            "Name": "Row12",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Note",
+                    "Control": 11,
+                    "Title": "Ghi chú",
+                    "props": {
+                        "rows": 3
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row12A",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.ReasonReject",
+                    "Control": 11,
+                    "Title": "Lý do",
+                    "props": {
+                        "disabled": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row13",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Control": 10,
+                    "Name": "Props.Kilomet",
+                    "Title": "Số KM"
+                }
+            ]
+        }
+    ],
+    "Buttons": [
+        {
+            "Name": "UpdateEvent",
+            "Control": 25,
+            "props": {
+                "label": "Ghi lại",
+                "icon": "pi pi-plus",
+                "type": "submit",
+                "className": "p-mt-2"
+            }
+        },
+        {
+            "Name": "CancelRegister",
+            "Control": 25,
+            "props": {
+                "label": "Hủy đăng ký",
+                "icon": "pi pi-print",
+                "type": "submit",
+                "className": "p-mt-2"
+            }
+        },
+        {
+            "Name": "Close",
+            "Control": 25,
+            "props": {
+                "label": "Đóng",
+                "className": "p-mt-2"
+            }
+        }
+    ]
+}

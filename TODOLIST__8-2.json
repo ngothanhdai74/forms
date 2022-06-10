@@ -1,0 +1,320 @@
+{
+    "Title": "",
+    "Controls": [
+        {
+            "Name": "TabView01",
+            "Control": 49,
+            "Controls": [
+                {
+                    "Name": "TabPanel1",
+                    "Control": 50,
+                    "props": {
+                        "header": "Văn bản đến"
+                    },
+                    "Controls": [
+                        {
+                            "Name": "__.TableMeetingOfSecretary_Count",
+                            "Control": 91,
+                            "Expanded": true,
+                            "Title": "Văn bản đến - Mời họp (<%=value%>)",
+                            "Controls": [
+                                {
+                                    "Name": "Row1",
+                                    "Control": 92,
+                                    "Controls": [
+                                        {
+                                            "Name": "__.TableMeetingOfSecretary",
+                                            "Control": 27,
+                                            "HasFunction": true,
+                                            "FunctionProperty": "props__onRowDoubleClick:#props__rowClassName",
+                                            "props": {
+                                                "className": "ed-form-control p-col-12 p-md-12",
+                                                "selectionMode": "checkbox",
+                                                "lazy": true,
+                                                "emptyMessage": "Không có dữ liệu",
+                                                "paginator": true,
+                                                "paginatorTemplate": "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+                                                "currentPageReportTemplate": "Từ {first} tới {last} của {totalRecords} Bản ghi",
+                                                "style": {
+                                                    "cursor": "pointer"
+                                                },
+                                                "onRowDoubleClick": "({data}) => { let endpoint = 'edoc/DOC/Common/GetDocumentByToDoListId?todoListId=<%=ToDoListID%>&documentId=<%=DocumentID%>&getDocLink=true&getDocFromSource=true&isIgnore=true'; let gridName = '__.TableMeetingOfSecretary'; let resetData = () => { refreshGrid(gridName) };toDoFormRef?.current?.OpenIncomingDocument(data, gridName, resetData, endpoint, '', null);  }",
+                                                "rowClassName": "(data) => { return {'p-text-bold-500': data?.Status === 0, 'p-text-red':data?.UrgentLevel !== 'THUONG'} }"
+                                            },
+                                            "Request": {
+                                                "method": "post",
+                                                "endpoint": "edoc/DOC/IncomingDocs/GetMyTodoListSearch",
+                                                "payload": {
+                                                    "DocumentStoreId": "1",
+                                                    "DocNo": 0,
+                                                    "Notation": "",
+                                                    "SoPhieuTrinh": "",
+                                                    "SoPhieuGui": "",
+                                                    "SoNgayDaTrinh": 0,
+                                                    "SenderName": "",
+                                                    "PhaiTheoDoi": false,
+                                                    "IsDraft": false,
+                                                    "AssignedType": -1,
+                                                    "OrgCode": "",
+                                                    "Body": "",
+                                                    "Page": 1,
+                                                    "PageSize": 10,
+                                                    "IsMeetingReq": 1,
+                                                    "OrderBy": "Created",
+                                                    "StatusFilter": "0,1,8,10",
+                                                    "Type": 0,
+                                                    "DepartmentCode": ""
+                                                }
+                                            },
+                                            "CustomColumns": [
+                                                {
+                                                    "Control": 6,
+                                                    "Field": "UrgentLevelName",
+                                                    "FieldByQuery": "UrgentLevel",
+                                                    "OptionLabel": "Name",
+                                                    "OptionValue": "Code",
+                                                    "Request": {
+                                                        "method": "get",
+                                                        "endpoint": "edoc/ctl/Catalog/GetByCategory/UrgentLevel",
+                                                        "cache": {
+                                                            "enable": true,
+                                                            "maxAge": 60
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "Control": 1,
+                                                    "Field": "DocDate",
+                                                    "FieldByQuery": "DocDate"
+                                                },
+                                                {
+                                                    "Control": 1,
+                                                    "Field": "DueDate",
+                                                    "FieldByQuery": "DueDate"
+                                                },
+                                                {
+                                                    "Control": 1,
+                                                    "Field": "ReceivedDate",
+                                                    "FieldByQuery": "ReceivedDate"
+                                                },
+                                                {
+                                                    "Control": 57,
+                                                    "Field": "FileView",
+                                                    "FieldByQuery": "SourceItemID"
+                                                }
+                                            ],
+                                            "Columns": [
+                                                {
+                                                    "className": "width5",
+                                                    "field": "FileView",
+                                                    "header": "Tệp"
+                                                },
+                                                {
+                                                    "className": "width5",
+                                                    "field": "DocNo",
+                                                    "header": "Số đến"
+                                                },
+                                                {
+                                                    "className": "width10",
+                                                    "field": "DocLabel",
+                                                    "header": "Số ký hiệu",
+                                                    "filter": true,
+                                                    "filterPlaceholder": "Tìm..."
+                                                },
+                                                {
+                                                    "className": "width15",
+                                                    "field": "DocDate",
+                                                    "header": "Ngày v/bản"
+                                                },
+                                                {
+                                                    "className": "width15",
+                                                    "field": "SenderName",
+                                                    "header": "Nơi gửi",
+                                                    "filter": true,
+                                                    "filterPlaceholder": "Tìm..."
+                                                },
+                                                {
+                                                    "className": "width35",
+                                                    "field": "Body",
+                                                    "header": "Trích yếu",
+                                                    "filter": true,
+                                                    "filterPlaceholder": "Tìm..."
+                                                },
+                                                {
+                                                    "className": "width15",
+                                                    "field": "UrgentLevelName",
+                                                    "header": "Độ khẩn"
+                                                },
+                                                {
+                                                    "className": "width15",
+                                                    "field": "DueDate",
+                                                    "header": "Hạn xử lý"
+                                                },
+                                                {
+                                                    "className": "width15",
+                                                    "field": "ReceivedDate",
+                                                    "header": "Ngày đến"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "Name": "__.TableReportOfSecretary_Count",
+                            "Control": 91,
+                            "Expanded": false,
+                            "Title": "Văn bản đến - Phiếu trình (<%=value%>)",
+                            "Controls": [
+                                {
+                                    "Name": "Row2",
+                                    "Control": 92,
+                                    "Controls": [
+                                        {
+                                            "Name": "__.TableReportOfSecretary",
+                                            "Control": 27,
+                                            "HasFunction": true,
+                                            "FunctionProperty": "props__onRowDoubleClick:#props__rowClassName",
+                                            "props": {
+                                                "className": "ed-form-control p-col-12 p-md-12",
+                                                "selectionMode": "checkbox",
+                                                "lazy": true,
+                                                "emptyMessage": "Không có dữ liệu",
+                                                "paginator": true,
+                                                "paginatorTemplate": "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+                                                "currentPageReportTemplate": "Từ {first} tới {last} của {totalRecords} Bản ghi",
+                                                "style": {
+                                                    "cursor": "pointer"
+                                                },
+                                                "onRowDoubleClick": "({data}) => { let endpoint = 'edoc/DOC/Common/GetDocumentByToDoListId?todoListId=<%=ToDoListID%>&documentId=<%=DocumentID%>&getDocLink=true&getDocFromSource=true&isIgnore=true'; let gridName = '__.TableReportOfSecretary'; let resetData = () => { refreshGrid(gridName) }; toDoFormRef?.current?.OpenIncomingDocument(data, gridName, resetData, endpoint, '', null);  }",
+                                                "rowClassName": "(data) => { return {'p-text-bold-500': data?.Status === 0, 'p-text-red':data?.UrgentLevel !== 'THUONG'} }"
+                                            },
+                                            "Request": {
+                                                "method": "post",
+                                                "endpoint": "edoc/DOC/IncomingDocs/GetMyTodoListSearch",
+                                                "payload": {
+                                                    "DocumentStoreId": "1",
+                                                    "DocNo": 0,
+                                                    "Notation": "",
+                                                    "SoPhieuTrinh": "",
+                                                    "SoPhieuGui": "",
+                                                    "SoNgayDaTrinh": 0,
+                                                    "SenderName": "",
+                                                    "PhaiTheoDoi": false,
+                                                    "IsDraft": false,
+                                                    "AssignedType": -1,
+                                                    "OrgCode": "",
+                                                    "Body": "",
+                                                    "Page": 1,
+                                                    "PageSize": 10,
+                                                    "IsInComing": 1,
+                                                    "OrderBy": "Created",
+                                                    "StatusFilter": "0,1,8,10",
+                                                    "Type": 0,
+                                                    "DepartmentCode": ""
+                                                }
+                                            },
+                                            "CustomColumns": [
+                                                {
+                                                    "Control": 6,
+                                                    "Field": "UrgentLevelName",
+                                                    "FieldByQuery": "UrgentLevel",
+                                                    "OptionLabel": "Name",
+                                                    "OptionValue": "Code",
+                                                    "Request": {
+                                                        "method": "get",
+                                                        "endpoint": "edoc/ctl/Catalog/GetByCategory/UrgentLevel",
+                                                        "cache": {
+                                                            "enable": true,
+                                                            "maxAge": 60
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "Control": 1,
+                                                    "Field": "DocDate",
+                                                    "FieldByQuery": "DocDate"
+                                                },
+                                                {
+                                                    "Control": 1,
+                                                    "Field": "DueDate",
+                                                    "FieldByQuery": "DueDate"
+                                                },
+                                                {
+                                                    "Control": 1,
+                                                    "Field": "ReceivedDate",
+                                                    "FieldByQuery": "ReceivedDate"
+                                                },
+                                                {
+                                                    "Control": 57,
+                                                    "Field": "FileView",
+                                                    "FieldByQuery": "SourceItemID"
+                                                }
+                                            ],
+                                            "Columns": [
+                                                {
+                                                    "className": "width5",
+                                                    "field": "FileView",
+                                                    "header": "Tệp"
+                                                },
+                                                {
+                                                    "className": "width5",
+                                                    "field": "DocNo",
+                                                    "header": "Số đến",
+                                                    "filter": true,
+                                                    "filterPlaceholder": "Tìm..."
+                                                },
+                                                {
+                                                    "className": "width10",
+                                                    "field": "DocLabel",
+                                                    "header": "Số ký hiệu",
+                                                    "filter": true,
+                                                    "filterPlaceholder": "Tìm..."
+                                                },
+                                                {
+                                                    "className": "width15",
+                                                    "field": "DocDate",
+                                                    "header": "Ngày v/bản"
+                                                },
+                                                {
+                                                    "className": "width15",
+                                                    "field": "SenderName",
+                                                    "header": "Nơi gửi",
+                                                    "filter": true,
+                                                    "filterPlaceholder": "Tìm..."
+                                                },
+                                                {
+                                                    "className": "width35",
+                                                    "field": "Body",
+                                                    "header": "Trích yếu",
+                                                    "filter": true,
+                                                    "filterPlaceholder": "Tìm..."
+                                                },
+                                                {
+                                                    "className": "width15",
+                                                    "field": "UrgentLevelName",
+                                                    "header": "Độ khẩn"
+                                                },
+                                                {
+                                                    "className": "width15",
+                                                    "field": "DueDate",
+                                                    "header": "Hạn xử lý"
+                                                },
+                                                {
+                                                    "className": "width15",
+                                                    "field": "ReceivedDate",
+                                                    "header": "Ngày đến"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

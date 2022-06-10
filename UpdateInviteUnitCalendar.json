@@ -1,0 +1,389 @@
+{
+    "Controls": [
+        {
+            "Name": "Row1",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "CreatedByName",
+                    "Title": "Người tạo lịch",
+                    "Control": 10,
+                    "ControlClass": "p-col-12 p-md-10",
+                    "props": {
+                        "disabled": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row2",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.General",
+                    "Title": "Lãnh đạo Đơn vị",
+                    "Control": 94,
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/ums/User/GetUsers?roleType=1",
+                        "payload": {},
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "ValueTemplate": "<%=ID%>:#<%=Code%>:#<%=Name%>",
+                    "LabelTemplate": "<%=Code%> - <%=Name%>",
+                    "ItemTemplate": "<%=Code%>|<%=Name%>",
+                    "SelectedItemTemplate": "<%=Name%>",
+                    "Large": false,
+                    "props": {
+                        "field": "Code|%Name",
+                        "multiple": false,
+                        "forceSelection": true,
+                        "autoHighlight": true,
+                        "dropdown": true
+                    },
+                    "Validations": {
+                        "Required": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row3",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Body",
+                    "Title": "Nội dung",
+                    "Control": 11,
+                    "Validations": {
+                        "MaxLength": 500
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row4",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "StartTime",
+                    "Title": "Ngày họp từ",
+                    "Control": 1,
+                    "props": {
+                        "showTime": true,
+                        "dateFormat": "dd/mm/yy",
+                        "showIcon": true,
+                        "mask": "99/99/9999",
+                        "showOnFocus": false
+                    },
+                    "Validations": {
+                        "Required": true,
+                        "Formula": {
+                            "Expression": "<%=(StartTime > EndTime)%>",
+                            "ErrorMessage": "Ngày họp từ không lớn hơn Ngày họp đến"
+                        }
+                    }
+                },
+                {
+                    "Name": "EndTime",
+                    "Title": "Đến",
+                    "Control": 1,
+                    "props": {
+                        "showTime": true,
+                        "dateFormat": "dd/mm/yy",
+                        "showIcon": true,
+                        "mask": "99/99/9999",
+                        "showOnFocus": false
+                    },
+                    "Validations": {
+                        "Required": true,
+                        "Formula": {
+                            "Expression": "<%=(StartTime > EndTime)%>",
+                            "ErrorMessage": "Ngày họp từ không lớn hơn Ngày họp đến"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row5",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Location",
+                    "Title": "Địa điểm họp",
+                    "Control": 10,
+                    "ControlClass": "p-col-12 p-md-10",
+                    "Validations": {
+                        "MaxLength": 500
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row6",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.HostMeeting",
+                    "Title": "Chủ trì cuộc họp",
+                    "Control": 10,
+                    "ControlClass": "p-col-12 p-md-10"
+                }
+            ]
+        },
+        {
+            "Name": "Tab1",
+            "Control": 91,
+            "Title": "Đơn vị chuẩn bị tài liệu",
+            "Controls": [
+                {
+                    "Name": "Row7",
+                    "Control": 92,
+                    "Controls": [
+                        {
+                            "Name": "Props.HostUnit",
+                            "Title": "Đơn vị chủ trì chính",
+                            "Control": 94,
+                            "Request": {
+                                "method": "get",
+                                "endpoint": "",
+                                "payload": {}
+                            },
+                            "ValueTemplate": "<%=ID%>:#<%=Code%>:#<%=Name%>",
+                            "LabelTemplate": "<%=Name%>",
+                            "ItemTemplate": "<%=InputCode%>|<%=Name%>",
+                            "SelectedItemTemplate": "<%=Code%>",
+                            "Large": false,
+                            "props": {
+                                "field": "InputCode|%Name",
+                                "multiple": false,
+                                "forceSelection": true,
+                                "autoHighlight": true,
+                                "dropdown": true
+                            }
+                        },
+                        {
+                            "Control": 96,
+                            "Name": "EmptyHostConsume",
+                            "ControlClass": "p-md-2"
+                        },
+                        {
+                            "Name": "Props.HostConsume",
+                            "Title": "Chủ trì tổng hợp",
+                            "Control": 3,
+                            "HideLabel": true
+                        }
+                    ]
+                },
+                {
+                    "Name": "Row8",
+                    "Control": 92,
+                    "Controls": [
+                        {
+                            "Name": "Props.CoordinationUnit",
+                            "Title": "Đơn vị phối hợp",
+                            "Control": 0,
+                            "Request": {
+                                "method": "get",
+                                "endpoint": "edoc/DOC/Common/GetOrgByParentAndType?type=2",
+                                "payload": {},
+                                "cache": {
+                                    "enable": true,
+                                    "maxAge": 60
+                                }
+                            },
+                            "ValueTemplate": "<%=ID%>:#<%=Code%>:#<%=Name%>",
+                            "Large": false,
+                            "props": {
+                                "field": "Name",
+                                "multiple": true,
+                                "forceSelection": true,
+                                "autoHighlight": true,
+                                "dropdown": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "Row9",
+                    "Control": 92,
+                    "Controls": [
+                        {
+                            "Title": "Thành phần tham dự",
+                            "Control": 0,
+                            "Name": "Props.Attendes",
+                            "Request": {
+                                "method": "get",
+                                "endpoint": "edoc/DOC/Common/GetOrgByParentAndType?type=2",
+                                "payload": {},
+                                "cache": {
+                                    "enable": true,
+                                    "maxAge": 60
+                                }
+                            },
+                            "ValueTemplate": "<%=ID%>:#<%=Code%>:#<%=Name%>",
+                            "Large": false,
+                            "props": {
+                                "field": "Name",
+                                "multiple": true,
+                                "forceSelection": true,
+                                "autoHighlight": true,
+                                "dropdown": true
+                            }
+                        },
+                        {
+                            "Name": "Props.UserAttendes",
+                            "Title": "Người tham gia",
+                            "Control": 11,
+                            "ControlClass": "p-col-12 p-md-4"
+                        }
+                    ]
+                },
+                {
+                    "Name": "Row10",
+                    "Control": 92,
+                    "Controls": [
+                        {
+                            "Name": "Props.PrepareJobs",
+                            "Title": "Các công việc cần chuẩn bị",
+                            "Control": 10,
+                            "ControlClass": "p-col-12 p-md-10",
+                            "Validations": {
+                                "MaxLength": 500
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "Row20",
+                    "Control": 92,
+                    "Controls": [
+                        {
+                            "Name": "Props.Alert",
+                            "Title": "Nhắc trước",
+                            "Control": 6,
+                            "props": {
+                                "options": [
+                                    {
+                                        "Code": "Outlook",
+                                        "Name": "Nhắc trước 15 phút"
+                                    },
+                                    {
+                                        "Code": "No",
+                                        "Name": "Nhắc trước 30 phút"
+                                    },
+                                    {
+                                        "Code": "45",
+                                        "Name": "Nhắc trước 45 phút"
+                                    }
+                                ],
+                                "optionValue": "Code",
+                                "optionLabel": "Name"
+                            }
+                        },
+                        {
+                            "Control": 96,
+                            "Name": "EmptyShowOnEBoard",
+                            "ControlClass": "p-md-2"
+                        },
+                        {
+                            "Name": "ShowOnEBoard",
+                            "Title": "Hiển thị lên ti vi",
+                            "HideLabel": true,
+                            "Control": 3
+                        }
+                    ]
+                },
+                {
+                    "Name": "Row11",
+                    "Control": 92,
+                    "Controls": [
+                        {
+                            "Name": "ContentStreams",
+                            "Title": "Kết quả",
+                            "Control": 57,
+                            "DocumentStoreId": 7,
+                            "ContentType": "0",
+                            "MultiValue": true,
+                            "Large": true,
+                            "props": {
+                                "maxFileSize": 1048576,
+                                "auto": true,
+                                "customUpload": true
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "TabFileMeeting",
+            "Control": 91,
+            "Title": "Tài liệu họp",
+            "Controls": [
+                {
+                    "Control": 92,
+                    "Name": "TableFileMain",
+                    "Controls": [
+                        {
+                            "Name": "Main_ContentStreams",
+                            "Title": "Tài liệu họp",
+                            "Control": 57,
+                            "DocumentStoreId": 7,
+                            "ContentType": "1",
+                            "MultiValue": true,
+                            "Large": true,
+                            "props": {
+                                "maxFileSize": 1048576,
+                                "auto": true,
+                                "customUpload": true
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "Buttons": [
+        {
+            "Name": "UpdateInviteCalendar",
+            "Control": 25,
+            "props": {
+                "label": "Tạo lịch",
+                "type": "button",
+                "className": "p-mt-2"
+            }
+        },
+        {
+            "Name": "RejectInviteCalendar",
+            "Control": 25,
+            "props": {
+                "label": "Từ chối",
+                "type": "button",
+                "className": "p-mt-2"
+            }
+        },
+        {
+            "Name": "DraftInviteCalendar",
+            "Control": 25,
+            "props": {
+                "label": "Ghi nháp",
+                "type": "button",
+                "className": "p-mt-2"
+            }
+        },
+        {
+            "Name": "Close",
+            "Control": 25,
+            "props": {
+                "label": "Đóng",
+                "type": "button",
+                "className": "p-mt-2"
+            }
+        }
+    ]
+}

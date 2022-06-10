@@ -1,0 +1,61 @@
+{
+    "Title": "Thống kê sử dụng phòng",
+    "Controls": [
+        {
+            "Name": "Row2",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Control": 6,
+                    "Name": "Unit",
+                    "Title": "Đơn vị",
+                    "props": {
+                        "optionValue": "Code",
+                        "optionLabel": "Name"
+                    },
+                    "Request": {
+                        "method": "get",
+                        "endpoint": ""
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row1",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "FromDate",
+                    "Control": 1,
+                    "Title": "Từ ngày",
+                    "props": {
+                        "showIcon": true,
+                        "showOnFocus": false,
+                        "mask": "99/99/9999",
+                        "dateFormat": "dd/mm/yy"
+                    }
+                },
+                {
+                    "Name": "ToDate",
+                    "Control": 1,
+                    "Title": "Đến ngày",
+                    "props": {
+                        "showIcon": true,
+                        "showOnFocus": false,
+                        "mask": "99/99/9999",
+                        "dateFormat": "dd/mm/yy"
+                    }
+                }
+            ]
+        }
+    ],
+    "Buttons": [
+        {
+            "Name": "StatiscalByRoom",
+            "Control": 25,
+            "props": {
+                "label": "Xem báo cáo"
+            }
+        }
+    ]
+}

@@ -1,0 +1,573 @@
+{
+    "Title":"",
+    "Controls":[
+       {
+          "Name":"TabView01",
+          "Control":49,
+          "Controls":[
+             {
+                "Name":"TabPanel1",
+                "Control":50,
+                "props":{
+                   "header":"Văn bản đến"
+                },
+                "Controls":[
+                   {
+                      "Name":"Row1",
+                      "Control":92,
+                      "Controls":[
+                         {
+                            "Name":"__.TableIncomingDoc",
+                            "Control":27,
+                            "HasFunction":true,
+                            "FunctionProperty":"props__onRowDoubleClick:#props__rowClassName",
+                            "props":{
+                               "className":"ed-form-control p-col-12 p-md-12",
+                               "selectionMode":"checkbox",
+                               "lazy":true,
+                               "emptyMessage":"Không có dữ liệu",
+                               "paginator":true,
+                               "paginatorTemplate":"FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+                               "currentPageReportTemplate":"Từ {first} tới {last} của {totalRecords} Bản ghi",
+                               "style":{
+                                  "cursor":"pointer"
+                               },
+                               "onRowDoubleClick":"({data}) => { formDetailRef.current.OnDoubleClickDashIncomingDoc(data.ID); }",
+                               "rowClassName":"(data) => { return {'p-text-bold-500': data?.Status === 0} }"
+                            },
+                            "Request":{
+                               "method":"get",
+                               "endpoint":"edoc/pub/Document/GetList",
+                               "payload":{
+                                  "DocStore":"Văn bản đến",
+                                  "DocType":"",
+                                  "ExcludeDocTypes":"",
+                                  "PageNumber":1,
+                                  "PageSize":10
+                               }
+                            },
+                            "CustomColumns":[
+                               {
+                                  "Control":6,
+                                  "Field":"UrgentLevel",
+                                  "FieldByQuery":"UrgentLevel",
+                                  "OptionLabel":"Name",
+                                  "OptionValue":"Code",
+                                  "Request":{
+                                     "method":"get",
+                                     "endpoint":"edoc/ctl/Catalog/GetByCategory/UrgentLevel",
+                                     "cache":{
+                                        "enable":true,
+                                        "maxAge":60
+                                     }
+                                  }
+                               },
+                               {
+                                  "Control":1,
+                                  "Field":"ReceivedDate",
+                                  "FieldByQuery":"ReceivedDate"
+                               },
+                               {
+                                  "Control":1,
+                                  "Field":"DueDate",
+                                  "FieldByQuery":"DueDate"
+                               },
+                               {
+                                  "Control":57,
+                                  "Field":"FileView",
+                                  "FieldByQuery":"SourceItemID"
+                               }
+                            ],
+                            "Columns":[
+                               {
+                                  "className":"width5",
+                                  "selectionMode":"multiple"
+                               },
+                               {
+                                  "className":"width5",
+                                  "field":"FileView",
+                                  "header":"Tệp"
+                               },
+                               {
+                                  "className":"width10",
+                                  "field":"DocNo",
+                                  "header":"Số đến",
+                                  "filter":true,
+                                  "filterPlaceholder":"Tìm..."
+                               },
+                               {
+                                  "className":"width10",
+                                  "field":"DocLabel",
+                                  "header":"Số kí hiệu",
+                                  "filter":true,
+                                  "filterPlaceholder":"Tìm..."
+                               },
+                               {
+                                  "className":"width15",
+                                  "field":"ReceivedDate",
+                                  "header":"Ngày đến"
+                               },
+                               {
+                                  "className":"width10",
+                                  "field":"SenderName",
+                                  "header":"Nơi gửi",
+                                  "filter":true,
+                                  "filterPlaceholder":"Tìm..."
+                               },
+                               {
+                                  "className":"width20",
+                                  "field":"Brief",
+                                  "header":"Trích yếu",
+                                  "filter":true,
+                                  "filterPlaceholder":"Tìm..."
+                               },
+                               {
+                                  "className":"width15",
+                                  "field":"UrgentLevel",
+                                  "header":"Độ khẩn"
+                               },
+                               {
+                                  "className":"width15",
+                                  "field":"DueDate",
+                                  "header":"Hạn xử lý"
+                               }
+                            ]
+                         }
+                      ]
+                   }
+                ]
+             },
+             {
+                "Name":"TabPanel2",
+                "Control":50,
+                "props":{
+                   "header":"Văn bản đi"
+                },
+                "Controls":[
+                   {
+                      "Name":"Row01",
+                      "Control":92,
+                      "Controls":[
+                         {
+                            "Name":"__.TableOutgoing",
+                            "Control":27,
+                            "HasFunction":true,
+                            "FunctionProperty":"props__onRowDoubleClick:#props__rowClassName",
+                            "props":{
+                               "className":"ed-form-control p-col-12 p-md-12",
+                               "selectionMode":"checkbox",
+                               "lazy":true,
+                               "emptyMessage":"Không có dữ liệu",
+                               "paginator":true,
+                               "paginatorTemplate":"FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+                               "currentPageReportTemplate":"Từ {first} tới {last} của {totalRecords} Bản ghi",
+                               "style":{
+                                  "cursor":"pointer"
+                               },
+                               "onRowDoubleClick":"({data}) => { formDetailRef.current.OnDoubleClickDashOutgoingDoc(data.ID); }",
+                               "rowClassName":"(data) => { return {'p-text-bold-500': data?.Status === 0} }"
+                            },
+                            "Request":{
+                               "method":"get",
+                               "endpoint":"edoc/pub/Document/GetList",
+                               "payload":{
+                                  "DocStore":"Văn bản đi",
+                                  "DocType":"",
+                                  "ExcludeDocTypes":"Quyết định:#TBKQ Phân loại:#TB Xác nhận nợ thuế;#TBKL LĐ Tổng cục",
+                                  "PageNumber":1,
+                                  "PageSize":10
+                               }
+                            },
+                            "CustomColumns":[
+                               {
+                                  "Control":57,
+                                  "Field":"FileView",
+                                  "FieldByQuery":"SourceItemID"
+                               }
+                            ],
+                            "Columns":[
+                               {
+                                  "className":"width5",
+                                  "selectionMode":"multiple"
+                               },
+                               {
+                                  "className":"width5",
+                                  "field":"FileView",
+                                  "header":"Tệp"
+                               },
+                               {
+                                  "className":"width50",
+                                  "field":"Brief",
+                                  "header":"Trích yếu",
+                                  "filter":true,
+                                  "filterPlaceholder":"Tìm..."
+                               },
+                               {
+                                  "className":"width20",
+                                  "field":"Editor",
+                                  "header":"Người soạn thảo"
+                               },
+                               {
+                                  "className":"width15",
+                                  "field":"DepartmentPath",
+                                  "header":"Đơn vị soạn thảo"
+                               },
+                               {
+                                  "className":"width15",
+                                  "field":"Created",
+                                  "header":"Ngày soạn"
+                               }
+                            ]
+                         }
+                      ]
+                   }
+                ]
+             },
+             {
+                "Name":"TabPanel3",
+                "Control":50,
+                "props":{
+                   "header":"Quyết định"
+                },
+                "Controls":[
+                   {
+                      "Name":"Row01",
+                      "Control":92,
+                      "Controls":[
+                         {
+                            "Name":"__.TableOutgoingQĐ",
+                            "Control":27,
+                            "HasFunction":true,
+                            "FunctionProperty":"props__onRowDoubleClick:#props__rowClassName",
+                            "props":{
+                               "className":"ed-form-control p-col-12 p-md-12",
+                               "selectionMode":"checkbox",
+                               "lazy":true,
+                               "emptyMessage":"Không có dữ liệu",
+                               "paginator":true,
+                               "paginatorTemplate":"FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+                               "currentPageReportTemplate":"Từ {first} tới {last} của {totalRecords} Bản ghi",
+                               "style":{
+                                  "cursor":"pointer"
+                               },
+                               "onRowDoubleClick":"({data}) => { formDetailRef.current.OnDoubleClickDashOutgoingDoc(data.ID); }",
+                               "rowClassName":"(data) => { return {'p-text-bold-500': data?.Status === 0} }"
+                            },
+                            "Request":{
+                               "method":"get",
+                               "endpoint":"edoc/pub/Document/GetList",
+                               "payload":{
+                                  "DocStore":"Văn bản đi",
+                                  "DocType":"Quyết định",
+                                  "ExcludeDocTypes":"",
+                                  "PageNumber":1,
+                                  "PageSize":10
+                               }
+                            },
+                            "CustomColumns":[
+                               {
+                                  "Control":57,
+                                  "Field":"FileView",
+                                  "FieldByQuery":"SourceItemID"
+                               }
+                            ],
+                            "Columns":[
+                               {
+                                  "className":"width5",
+                                  "selectionMode":"multiple"
+                               },
+                               {
+                                  "className":"width5",
+                                  "field":"FileView",
+                                  "header":"Tệp"
+                               },
+                               {
+                                  "className":"width50",
+                                  "field":"Brief",
+                                  "header":"Trích yếu",
+                                  "filter":true,
+                                  "filterPlaceholder":"Tìm..."
+                               },
+                               {
+                                  "className":"width20",
+                                  "field":"Editor",
+                                  "header":"Người soạn thảo"
+                               },
+                               {
+                                  "className":"width15",
+                                  "field":"DepartmentPath",
+                                  "header":"Đơn vị soạn thảo"
+                               },
+                               {
+                                  "className":"width15",
+                                  "field":"Created",
+                                  "header":"Ngày soạn"
+                               }
+                            ]
+                         }
+                      ]
+                   }
+                ]
+             },
+             {
+                "Name":"TabPanel4",
+                "Control":50,
+                "props":{
+                   "header":"TBKQ Phân loại"
+                },
+                "Controls":[
+                   {
+                      "Name":"Row01",
+                      "Control":92,
+                      "Controls":[
+                         {
+                            "Name":"__.TableOutgoingTBKQPL",
+                            "Control":27,
+                            "HasFunction":true,
+                            "FunctionProperty":"props__onRowDoubleClick:#props__rowClassName",
+                            "props":{
+                               "className":"ed-form-control p-col-12 p-md-12",
+                               "selectionMode":"checkbox",
+                               "lazy":true,
+                               "emptyMessage":"Không có dữ liệu",
+                               "paginator":true,
+                               "paginatorTemplate":"FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+                               "currentPageReportTemplate":"Từ {first} tới {last} của {totalRecords} Bản ghi",
+                               "style":{
+                                  "cursor":"pointer"
+                               },
+                               "onRowDoubleClick":"({data}) => { formDetailRef.current.OnDoubleClickDashOutgoingDoc(data.ID); }",
+                               "rowClassName":"(data) => { return {'p-text-bold-500': data?.Status === 0} }"
+                            },
+                            "Request":{
+                               "method":"get",
+                               "endpoint":"edoc/pub/Document/GetList",
+                               "payload":{
+                                  "DocStore":"Văn bản đi",
+                                  "DocType":"TBKQ Phân loại",
+                                  "ExcludeDocTypes":"",
+                                  "PageNumber":1,
+                                  "PageSize":10
+                               }
+                            },
+                            "CustomColumns":[
+                               {
+                                  "Control":57,
+                                  "Field":"FileView",
+                                  "FieldByQuery":"SourceItemID"
+                               }
+                            ],
+                            "Columns":[
+                               {
+                                  "className":"width5",
+                                  "selectionMode":"multiple"
+                               },
+                               {
+                                  "className":"width5",
+                                  "field":"FileView",
+                                  "header":"Tệp"
+                               },
+                               {
+                                  "className":"width50",
+                                  "field":"Brief",
+                                  "header":"Trích yếu",
+                                  "filter":true,
+                                  "filterPlaceholder":"Tìm..."
+                               },
+                               {
+                                  "className":"width20",
+                                  "field":"Editor",
+                                  "header":"Người soạn thảo"
+                               },
+                               {
+                                  "className":"width15",
+                                  "field":"DepartmentPath",
+                                  "header":"Đơn vị soạn thảo"
+                               },
+                               {
+                                  "className":"width15",
+                                  "field":"Created",
+                                  "header":"Ngày soạn"
+                               }
+                            ]
+                         }
+                      ]
+                   }
+                ]
+             },
+             {
+                "Name":"TabPanel5",
+                "Control":50,
+                "props":{
+                   "header":"TB Xác nhận nợ thuế"
+                },
+                "Controls":[
+                   {
+                      "Name":"Row01",
+                      "Control":92,
+                      "Controls":[
+                         {
+                            "Name":"__.TableOutgoingTBXNNT",
+                            "Control":27,
+                            "HasFunction":true,
+                            "FunctionProperty":"props__onRowDoubleClick:#props__rowClassName",
+                            "props":{
+                               "className":"ed-form-control p-col-12 p-md-12",
+                               "selectionMode":"checkbox",
+                               "lazy":true,
+                               "emptyMessage":"Không có dữ liệu",
+                               "paginator":true,
+                               "paginatorTemplate":"FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+                               "currentPageReportTemplate":"Từ {first} tới {last} của {totalRecords} Bản ghi",
+                               "style":{
+                                  "cursor":"pointer"
+                               },
+                               "onRowDoubleClick":"({data}) => { formDetailRef.current.OnDoubleClickDashOutgoingDoc(data.ID);  }",
+                               "rowClassName":"(data) => { return {'p-text-bold-500': data?.Status === 0} }"
+                            },
+                            "Request":{
+                               "method":"get",
+                               "endpoint":"edoc/pub/Document/GetList",
+                               "payload":{
+                                  "DocStore":"Văn bản đi",
+                                  "DocType":"TB Xác nhận nợ thuế",
+                                  "ExcludeDocTypes":"",
+                                  "PageNumber":1,
+                                  "PageSize":10
+                               }
+                            },
+                            "CustomColumns":[
+                               {
+                                  "Control":57,
+                                  "Field":"FileView",
+                                  "FieldByQuery":"SourceItemID"
+                               }
+                            ],
+                            "Columns":[
+                               {
+                                  "className":"width5",
+                                  "selectionMode":"multiple"
+                               },
+                               {
+                                  "className":"width5",
+                                  "field":"FileView",
+                                  "header":"Tệp"
+                               },
+                               {
+                                  "className":"width50",
+                                  "field":"Brief",
+                                  "header":"Trích yếu",
+                                  "filter":true,
+                                  "filterPlaceholder":"Tìm..."
+                               },
+                               {
+                                  "className":"width20",
+                                  "field":"Editor",
+                                  "header":"Người soạn thảo"
+                               },
+                               {
+                                  "className":"width15",
+                                  "field":"DepartmentPath",
+                                  "header":"Đơn vị soạn thảo"
+                               },
+                               {
+                                  "className":"width15",
+                                  "field":"Created",
+                                  "header":"Ngày soạn"
+                               }
+                            ]
+                         }
+                      ]
+                   }
+                ]
+             },
+             {
+                "Name":"TabPanel6",
+                "Control":50,
+                "props":{
+                   "header":"TBKL LĐ Tổng cục"
+                },
+                "Controls":[
+                   {
+                      "Name":"Row01",
+                      "Control":92,
+                      "Controls":[
+                         {
+                            "Name":"__.TableOutgoingTBKLLDTC",
+                            "Control":27,
+                            "HasFunction":true,
+                            "FunctionProperty":"props__onRowDoubleClick:#props__rowClassName",
+                            "props":{
+                               "className":"ed-form-control p-col-12 p-md-12",
+                               "selectionMode":"checkbox",
+                               "lazy":true,
+                               "emptyMessage":"Không có dữ liệu",
+                               "paginator":true,
+                               "paginatorTemplate":"FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+                               "currentPageReportTemplate":"Từ {first} tới {last} của {totalRecords} Bản ghi",
+                               "style":{
+                                  "cursor":"pointer"
+                               },
+                               "onRowDoubleClick":"({data}) => { formDetailRef.current.OnDoubleClickDashOutgoingDoc(data.ID);  }",
+                               "rowClassName":"(data) => { return {'p-text-bold-500': data?.Status === 0} }"
+                            },
+                            "Request":{
+                               "method":"get",
+                               "endpoint":"edoc/pub/Document/GetList",
+                               "payload":{
+                                  "DocStore":"Văn bản đi",
+                                  "DocType":"TBKL LĐ Tổng cục",
+                                  "ExcludeDocTypes":"",
+                                  "PageNumber":1,
+                                  "PageSize":10
+                               }
+                            },
+                            "CustomColumns":[
+                               {
+                                  "Control":57,
+                                  "Field":"FileView",
+                                  "FieldByQuery":"SourceItemID"
+                               }
+                            ],
+                            "Columns":[
+                               {
+                                  "className":"width5",
+                                  "selectionMode":"multiple"
+                               },
+                               {
+                                  "className":"width5",
+                                  "field":"FileView",
+                                  "header":"Tệp"
+                               },
+                               {
+                                  "className":"width50",
+                                  "field":"Brief",
+                                  "header":"Trích yếu",
+                                  "filter":true,
+                                  "filterPlaceholder":"Tìm..."
+                               },
+                               {
+                                  "className":"width20",
+                                  "field":"Editor",
+                                  "header":"Người soạn thảo"
+                               },
+                               {
+                                  "className":"width15",
+                                  "field":"DepartmentPath",
+                                  "header":"Đơn vị soạn thảo"
+                               },
+                               {
+                                  "className":"width15",
+                                  "field":"Created",
+                                  "header":"Ngày soạn"
+                               }
+                            ]
+                         }
+                      ]
+                   }
+                ]
+             }
+          ]
+       }
+     ]
+ }

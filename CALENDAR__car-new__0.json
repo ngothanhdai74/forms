@@ -1,0 +1,333 @@
+{
+	"Controls": [
+		{
+			"Name": "Row1",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "CreatedByName",
+					"Title": "Người đăng ký",
+					"Control": 10,
+					"props": {
+						"disabled": true
+					}
+				},
+				{
+					"Name": "Props.PhoneNum",
+					"Title": "Số điện thoại",
+					"Control": 10,
+					"Validations": {
+						"Required": true,
+						"Regular": {
+							"Expression": "(09|03|07|08|05)+([0-9]{8})$",
+							"ErrorMessage": "Nhập sai định dạng"
+						}
+					}
+				}
+			]
+		},
+		{
+			"Name": "Row1A",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "Body",
+					"Title": "Tiêu đề",
+					"Control": 10,
+					"ControlClass": "p-md-10 p-col-12",
+					"Validations": {
+						"Required": true,
+						"MaxLength": 500
+					}
+				}
+			]
+		},
+		{
+			"Name": "Row2",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "Props.Manager",
+					"Title": "Trưởng đoàn",
+					"Control": 94,
+					"Validations": {
+						"Required": true
+					},
+					"Request": {
+						"method": "get",
+						"endpoint": "edoc/ums/User/GetAll?isGetLocked=true",
+						"cache": {
+							"enable": true,
+							"maxAge": 60
+						}
+					},
+					"ValueTemplate": "<%=ID%>:#<%=LoginName%>:#<%=FullName%>:#<%=RoleName%>",
+					"ItemTemplate": "<%=LoginName%>|<%=FullName%>",
+					"SelectedItemTemplate": "<%=Name%>",
+					"Large": true,
+					"props": {
+						"field": "LoginName|%Name",
+						"multiple": false,
+						"forceSelection": true,
+						"autoHighlight": true,
+						"dropdown": true
+					}
+				},
+				{
+					"Name": "Props.ManagerRoleName",
+					"Control": 10,
+					"Title": "Chức vụ",
+					"props": {
+						"readOnly": true
+					}
+				}
+			]
+		},
+		{
+			"Name": "Row3",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "Props.Leader",
+					"Control": 94,
+					"Title": "Lãnh đạo phê duyệt",
+					"Request": {
+						"method": "get",
+						"endpoint": "edoc/ums/User/GetAll?isGetLocked=true",
+						"cache": {
+							"enable": true,
+							"maxAge": 60
+						}
+					},
+					"ValueTemplate": "<%=ID%>:#<%=LoginName%>:#<%=FullName%>:#<%=RoleName%>",
+					"ItemTemplate": "<%=LoginName%>|<%=FullName%>",
+					"SelectedItemTemplate": "<%=Name%>",
+					"Large": true,
+					"props": {
+						"field": "LoginName|%Name",
+						"multiple": false,
+						"forceSelection": true,
+						"autoHighlight": true,
+						"dropdown": true
+					},
+					"Validations": {
+						"Required": true
+					}
+				},
+				{
+					"Name": "Props.LeaderRoleName",
+					"Control": 10,
+					"Title": "Chức vụ",
+					"props": {
+						"disabled": true
+					}
+				}
+			]
+		},
+		{
+			"Name": "Row4",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "Props.Unit",
+					"Control": 0,
+					"Title": "Đơn vị",
+					"Validations": {
+						"Required": true
+					},
+					"ControlClass": "p-col-12 p-md-10",
+					"Large": true,
+					"props": {
+						"field": "Name",
+						"multiple": false,
+						"forceSelection": true,
+						"autoHighlight": true,
+						"dropdown": true
+					},
+					"Request": {
+						"method": "get",
+						"endpoint": "edoc/ums/Organization/GetOrgByParentAndType?orgCode=BTC&type=0&getParent=true",
+						"payload": {},
+						"cache": {
+							"enable": true,
+							"maxAge": 60
+						}
+					},
+					"ValueTemplate": "<%=ID%>:#<%=Code%>:#<%=Name%>"
+				}
+			]
+		},
+		{
+			"Name": "Row5",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "Props.NumPerson",
+					"Control": 10,
+					"Title": "Số lượng người",
+					"Validations": {
+						"Required": true
+					},
+					"props": {
+						"keyfilter": "pint"
+					}
+				}
+			]
+		},
+		{
+			"Name": "Row6",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "Location",
+					"Control": 10,
+					"Title": "Nơi đến",
+					"ControlClass": "p-col-12 p-md-10",
+					"Validations": {
+						"Required": true,
+						"MaxLength": 500
+					}
+				}
+			]
+		},
+		{
+			"Name": "Row7",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "Props.PickUpPlace",
+					"Control": 10,
+					"Title": "Nơi đón",
+					"ControlClass": "p-col-12 p-md-10",
+					"Validations": {
+						"Required": true,
+						"MaxLength": 500
+					}
+				}
+			]
+		},
+		{
+			"Name": "Row8",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "StartTime",
+					"Control": 1,
+					"Title": "Ngày, giờ đi",
+					"Validations": {
+						"Required": true,
+						"Formula": {
+							"Expression": "<%=(StartTime > EndTime)%>",
+							"ErrorMessage": "Ngày, giờ đi không lớn hơn Ngày,giờ về"
+						}
+					},
+					"props": {
+						"dateFormat": "dd/mm/yy",
+						"mask": "99/99/9999",
+						"showIcon": true,
+						"showOnFocus": false,
+						"showTime": true
+					}
+				},
+				{
+					"Name": "EndTime",
+					"Control": 1,
+					"Title": "Ngày, giờ về",
+					"Validations": {
+						"Required": true,
+						"Formula": {
+							"Expression": "<%=(StartTime > EndTime)%>",
+							"ErrorMessage": "Ngày, giờ đi không lớn hơn Ngày,giờ về"
+						}
+					},
+					"props": {
+						"dateFormat": "dd/mm/yy",
+						"mask": "99/99/9999",
+						"showIcon": true,
+						"showOnFocus": false,
+						"showTime": true
+					}
+				}
+			]
+		},
+		{
+			"Name": "Row9",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "Created",
+					"Control": 1,
+					"Title": "Thời gian đăng ký",
+					"Validations": {},
+					"ControlClass": "p-col-12 p-md-10",
+					"props": {
+						"dateFormat": "dd/mm/yy",
+						"mask": "99/99/9999",
+						"showIcon": true,
+						"showOnFocus": false,
+						"disabled": true
+					}
+				}
+			]
+		},
+		{
+			"Name": "RowFile",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "ContentStreams",
+					"Title": "Kế hoạch công tác được phê duyệt chủ chương đi công tác",
+					"Control": 57,
+					"DocumentStoreId": 7,
+					"ContentType": "0",
+					"MultiValue": true,
+					"Large": true,
+					"props": {
+						"maxFileSize": 1048576,
+						"auto": true,
+						"customUpload": true
+					}
+				}
+			]
+		},
+		{
+			"Name": "Row11",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "Note",
+					"Control": 11,
+					"Title": "Ghi chú",
+					"Validations": {
+						"MaxLength": 500
+					},
+					"props": {
+						"rows": 3
+					}
+				}
+			]
+		}
+	],
+	"Buttons": [
+		{
+			"Name": "AddEvent",
+			"Control": 25,
+			"props": {
+				"label": "Ghi lại",
+				"icon": "pi pi-plus",
+				"type": "submit",
+				"className": "p-mt-2"
+			}
+		},
+		{
+			"Name": "SentCalendar",
+			"Control": 25,
+			"props": {
+				"label": "Gửi",
+				"icon": "pi pi-send",
+				"type": "submit",
+				"className": "p-mt-2"
+			}
+		}
+	]
+}

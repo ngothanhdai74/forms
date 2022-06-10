@@ -1,0 +1,166 @@
+{
+	"Title": "Báo cáo tiến độ thực hiện công tác trọng tâm năm cho Lãnh đạo",
+	"Controls": [
+		{
+			"Name": "Row1",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "UnitCode",
+					"Title": "Đơn vị",
+					"Control": 6,
+					"props": {
+						"showClear": true,
+						"placeholder": "Tất cả",
+						"optionLabel": "Name",
+						"optionValue": "Code"
+					},
+					"Request": {
+						"method": "get",
+						"endpoint": "edoc/ums/Organization/GetOrgByParentAndType?type=0&getParent=false",
+						"cache": {
+							"enable": true,
+							"maxAge": 60
+						}
+					}
+				},
+				{
+					"Control": 6,
+					"Name": "TaskType",
+					"Title": "Loại nhiệm vụ",
+					"Request": {
+						"method": "get",
+						"endpoint": "",
+						"cache": {
+							"enable": true,
+							"maxAge": 60
+						}
+					},
+					"props": {
+						"optionLabel": "Name",
+						"optionValue": "Code",
+						"showClear": true,
+						"placeholder": "Tất cả"
+					}
+				}
+			]
+		},
+		{
+			"Name": "Row2",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "State",
+					"Control": 6,
+					"Title": "Tình trạng",
+					"props": {
+						"showClear": true,
+						"placeholder": "Tất cả",
+						"optionLabel": "Name",
+						"optionValue": "Code",
+						"options": [
+							{
+								"Code": "0",
+								"Name": "Trong hạn"
+							},
+							{
+								"Code": "1",
+								"Name": "Quá hạn"
+							}
+						]
+					}
+				},
+				{
+					"Name": "DocLabel",
+					"Control": 10,
+					"Title": "Số văn bản"
+				}
+			]
+		},
+		{
+			"Name": "RowTime",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "FromDate",
+					"Title": "Từ ngày",
+					"Control": 1,
+					"props": {
+						"mask": "99/99/9999",
+						"showIcon": true,
+						"showOnFocus": false,
+						"dateFormat": "dd/mm/yy"
+					},
+					"Validations": {
+						"Required": false,
+						"Formula": {
+							"Expression": "<%=(ToDate < FromDate)%>",
+							"ErrorMessage": "Từ ngày không lớn hơn Đến ngày"
+						}
+					}
+				},
+				{
+					"Name": "ToDate",
+					"Title": "Đến ngày",
+					"Control": 1,
+					"props": {
+						"mask": "99/99/9999",
+						"showIcon": true,
+						"showOnFocus": false,
+						"dateFormat": "dd/mm/yy"
+					},
+					"Validations": {
+						"Required": false,
+						"Formula": {
+							"Expression": "<%=(ToDate < FromDate)%>",
+							"ErrorMessage": "Đến ngày không nhỏ hơn Từ ngày"
+						}
+					}
+				}
+			]
+		}
+	],
+	"Buttons": [
+		{
+			"Control": 25,
+			"Name": "ConclusionTaskView",
+			"props": {
+				"label": "Xem báo cáo",
+				"className": "p-mt-2",
+				"type": "submit"
+			}
+		},
+		{
+			"Control": 25,
+			"Name": "TaskImportantRefresh",
+			"props": {
+				"label": "Làm mới",
+				"className": "p-mt-2"
+			}
+		},
+		{
+			"Control": 25,
+			"Name": "TaskImportantWord",
+			"props": {
+				"label": "Xuất file word",
+				"className": "p-mt-2"
+			}
+		},
+		{
+			"Control": 25,
+			"Name": "TaskImportantPDF",
+			"props": {
+				"label": "Xuất file pdf",
+				"className": "p-mt-2"
+			}
+		},
+		{
+			"Control": 25,
+			"Name": "TaskImportantExcel",
+			"props": {
+				"label": "Xuất file excel",
+				"className": "p-mt-2"
+			}
+		}
+	]
+}

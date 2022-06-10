@@ -1,0 +1,66 @@
+{
+    "Title": "Văn bản đến - Phiếu trình",
+    "Controls": [
+        {
+            "Name": "__.ReportTable",
+            "Control": 27,
+            "HasFunction": true,
+            "FunctionProperty": "props__onRowDoubleClick:#props__rowClassName:#props__paginatorTemplate",
+            "props": {
+                "className": "ed-form-control p-col-12 p-md-12",
+                "selectionMode": "checkbox",
+                "lazy": true,
+                "emptyMessage": "Không có dữ liệu",
+                "paginator": true,
+                "paginatorTemplate": "templatePaging",
+                "currentPageReportTemplate": "Từ {first} tới {last} của {totalRecords} Bản ghi",
+                "style": {
+                    "cursor": "pointer"
+                },
+                "onRowDoubleClick": "({data}) => {  toogleLoading(true); let endpoint = 'edoc/DOC/Common/GetDocumentByToDoListId?todoListId=<%=ToDoListID%>&documentId=<%=DocumentID%>&getDocLink=true&getDocFromSource=true&isIgnore=true'; let code = 'REPORT'; setTimeout(() => { toDoFormRef?.current?.OpenIncomingDocument(data, '', handleRefresh, endpoint, code, previewFile); toogleLoading(false); closeFileView(); }, 800);  }",
+                "rowClassName": "(data) => { return {'p-text-bold-500': data?.Status === 0} }"
+            },
+            "Request": {
+                "method": "post",
+                "endpoint": "edoc/DOC/IncomingDocs/GetMyTodoListSearch",
+                "payload": {
+                    "DocumentStoreId": "1",
+                    "DocNo": 0,
+                    "Notation": "",
+                    "SoPhieuTrinh": "",
+                    "SoPhieuGui": "",
+                    "SoNgayDaTrinh": 0,
+                    "SenderName": "",
+                    "PhaiTheoDoi": false,
+                    "IsDraft": false,
+                    "AssignedType": -1,
+                    "OrgCode": "",
+                    "Body": "",
+                    "Page": 1,
+                    "PageSize": 10,
+                    "IsInComing": 1,
+                    "OrderBy": "Created",
+                    "StatusFilter": "0,8,10,13",
+                    "Type": 0,
+                    "DepartmentCode": ""
+                }
+            },
+            "Columns": [
+                {
+                    "className": "width5",
+                    "field": "DocNo",
+                    "header": "Số đến",
+                    "filter": true,
+                    "filterPlaceholder": "Tìm..."
+                },
+                {
+                    "className": "width10",
+                    "field": "DocLabel",
+                    "header": "Số ký hiệu",
+                    "filter": true,
+                    "filterPlaceholder": "Tìm..."
+                }
+            ]
+        }
+    ]
+}

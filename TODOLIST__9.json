@@ -1,0 +1,865 @@
+{
+  "Title": "",
+  "Controls": [
+    {
+      "Name": "TabView01",
+      "Control": 49,
+      "Controls": [
+        {
+          "Name": "TabPanel1",
+          "Control": 50,
+          "props": {
+            "header": "Văn bản đến"
+          },
+          "Controls": [
+            {
+              "Name": "__.TableNotRegisterIncomingDoc_Count",
+              "Control": 91,
+              "Expanded": true,
+              "Title": "Văn bản đến - Chờ vào sổ (<%=value%>)",
+              "Controls": [
+                {
+                  "Name": "Row1",
+                  "Control": 92,
+                  "Controls": [
+                    {
+                      "Name": "__.TableNotRegisterIncomingDoc",
+                      "Control": 27,
+                      "HasFunction": true,
+                      "FunctionProperty": "props__onRowDoubleClick:#props__rowClassName",
+                      "props": {
+                        "className": "ed-form-control p-col-12 p-md-12",
+                        "selectionMode": "checkbox",
+                        "lazy": true,
+                        "emptyMessage": "Không có dữ liệu",
+                        "paginator": true,
+                        "paginatorTemplate": "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+                        "currentPageReportTemplate": "Từ {first} tới {last} của {totalRecords} Bản ghi",
+                        "style": {
+                          "cursor": "pointer"
+                        },
+                        "onRowDoubleClick": "({data}) => { let endpoint = 'edoc/DOC/Common/GetDocumentByToDoListId?todoListId=<%=ToDoListID%>&documentId=<%=DocumentID%>&getDocLink=true&getDocFromSource=true&isIgnore=true'; let gridName = '__.TableRegisteredIncomingDoc:#__.TableNotRegisterIncomingDoc'; let resetData = () => { refreshGrid(gridName) }; toDoFormRef?.current?.OpenIncomingDocument(data, gridName, resetData, endpoint, '', null);  }",
+                        "rowClassName": "(data) => { return {'p-text-bold-500': data?.Status === 0, 'p-text-red':data?.UrgentLevel !== 'THUONG'} }"
+                      },
+                      "Request": {
+                        "method": "post",
+                        "endpoint": "edoc/DOC/IncomingDocs/GetMyTodoListSearch",
+                        "payload": {
+                          "DocumentStoreId": "1",
+                          "DocNo": 0,
+                          "Notation": "",
+                          "SoPhieuTrinh": "",
+                          "SoPhieuGui": "",
+                          "SoNgayDaTrinh": 0,
+                          "SenderName": "",
+                          "PhaiTheoDoi": false,
+                          "IsDraft": true,
+                          "AssignedType": -1,
+                          "OrgCode": "",
+                          "Body": "",
+                          "Page": 1,
+                          "PageSize": 10,
+                          "OrderBy": "Created",
+                          "Type": 0,
+                          "DepartmentCode": ""
+                        }
+                      },
+                      "CustomColumns": [
+                        {
+                          "Control": 6,
+                          "Field": "UrgentLevelName",
+                          "FieldByQuery": "UrgentLevel",
+                          "OptionLabel": "Name",
+                          "OptionValue": "Code",
+                          "Request": {
+                            "method": "get",
+                            "endpoint": "edoc/ctl/Catalog/GetByCategory/UrgentLevel",
+                            "cache": {
+                              "enable": true,
+                              "maxAge": 60
+                            }
+                          }
+                        },
+                        {
+                          "Control": 1,
+                          "Field": "ReceivedDate",
+                          "FieldByQuery": "ReceivedDate"
+                        },
+                        {
+                          "Control": 1,
+                          "Field": "DueDate",
+                          "FieldByQuery": "DueDate"
+                        },
+                        {
+                          "Control": 57,
+                          "Field": "FileView",
+                          "FieldByQuery": "SourceItemID"
+                        },
+                        {
+                          "Control": 6,
+                          "Field": "RoleName",
+                          "FieldByQuery": "RoleID",
+                          "OptionLabel": "Name",
+                          "OptionValue": "ID",
+                          "Request": {
+                            "method": "get",
+                            "endpoint": "edoc/ums/Role/GetByUser",
+                            "cache": {
+                              "enable": true,
+                              "maxAge": 60
+                            }
+                          }
+                        }
+                      ],
+                      "Columns": [
+                        {
+                          "className": "width5",
+                          "selectionMode": "multiple"
+                        },
+                        {
+                          "className": "width5",
+                          "field": "FileView",
+                          "header": "Tệp"
+                        },
+                        {
+                          "className": "width10",
+                          "field": "DocLabel",
+                          "header": "Số kí hiệu",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width15",
+                          "field": "ReceivedDate",
+                          "header": "Ngày đến"
+                        },
+                        {
+                          "className": "width10",
+                          "field": "SenderName",
+                          "header": "Nơi gửi",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width20",
+                          "field": "Body",
+                          "header": "Trích yếu",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width15",
+                          "field": "UrgentLevelName",
+                          "header": "Độ khẩn"
+                        },
+                        {
+                          "className": "width10",
+                          "field": "AssignedTypeName",
+                          "header": "Hình thức"
+                        },
+                        {
+                          "className": "width10",
+                          "field": "StatusName",
+                          "header": "Trạng thái"
+                        },
+                        {
+                          "className": "width15",
+                          "field": "DueDate",
+                          "header": "Hạn xử lý"
+                        },
+                        {
+                          "className": "width10",
+                          "field": "BussinessDocTypeName",
+                          "header": "Loại nghiệp vụ"
+                        },
+                        {
+                          "className": "width15",
+                          "field": "RoleName",
+                          "header": "Vai trò"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "buttonChoVaoSo",
+                  "Control": 92,
+                  "Controls": [
+                    {
+                      "Name": "BtnRegisterDocument",
+                      "Control": 25,
+                      "props": {
+                        "className": "p-ml-2",
+                        "label": "Vào sổ"
+                      }
+                    },
+                    {
+                      "Name": "BtnRefuse",
+                      "Control": 25,
+                      "props": {
+                        "className": "p-ml-2",
+                        "label": "Từ chối"
+                      }
+                    },
+                    {
+                      "Name": "BtnFinish",
+                      "Control": 25,
+                      "props": {
+                        "className": "p-ml-2",
+                        "label": "Không vào sổ"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Name": "__.TableRegisteredIncomingDoc_Count",
+              "Control": 91,
+              "Expanded": false,
+              "Title": "Văn bản đến - Đã vào sổ (<%=value%>)",
+              "Controls": [
+                {
+                  "Name": "Row2",
+                  "Control": 92,
+                  "Controls": [
+                    {
+                      "Name": "__.TableRegisteredIncomingDoc",
+                      "Control": 27,
+                      "HasFunction": true,
+                      "FunctionProperty": "props__onRowDoubleClick:#props__rowClassName",
+                      "props": {
+                        "className": "ed-form-control p-col-12 p-md-12",
+                        "selectionMode": "checkbox",
+                        "lazy": true,
+                        "emptyMessage": "Không có dữ liệu",
+                        "paginator": true,
+                        "paginatorTemplate": "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+                        "currentPageReportTemplate": "Từ {first} tới {last} của {totalRecords} Bản ghi",
+                        "style": {
+                          "cursor": "pointer"
+                        },
+                        "onRowDoubleClick": "({data}) => { let endpoint = 'edoc/DOC/Common/GetDocumentByToDoListId?todoListId=<%=ToDoListID%>&documentId=<%=DocumentID%>&getDocLink=true&getDocFromSource=true&isIgnore=true'; let gridName = '__.TableRegisteredIncomingDoc:#__.TableNotRegisterIncomingDoc'; let resetData = () => { refreshGrid(gridName) }; toDoFormRef?.current?.OpenIncomingDocument(data, gridName, resetData, endpoint, '', null);  }",
+                        "rowClassName": "(data) => { return {'p-text-bold-500': data?.Status === 0, 'p-text-red':data?.UrgentLevel !== 'THUONG'} }"
+                      },
+                      "Request": {
+                        "method": "post",
+                        "endpoint": "edoc/DOC/IncomingDocs/GetMyTodoListSearch",
+                        "payload": {
+                          "DocumentStoreId": "1",
+                          "DocNo": 0,
+                          "Notation": "",
+                          "SoPhieuTrinh": "",
+                          "SoPhieuGui": "",
+                          "SoNgayDaTrinh": 0,
+                          "SenderName": "",
+                          "PhaiTheoDoi": false,
+                          "IsDraft": false,
+                          "AssignedType": -1,
+                          "OrgCode": "",
+                          "Body": "",
+                          "Page": 1,
+                          "PageSize": 10,
+                          "OrderBy": "Created",
+                          "Type": 0,
+                          "DepartmentCode": ""
+                        }
+                      },
+                      "CustomColumns": [
+                        {
+                          "Control": 6,
+                          "Field": "UrgentLevelName",
+                          "FieldByQuery": "UrgentLevel",
+                          "OptionLabel": "Name",
+                          "OptionValue": "Code",
+                          "Request": {
+                            "method": "get",
+                            "endpoint": "edoc/ctl/Catalog/GetByCategory/UrgentLevel",
+                            "cache": {
+                              "enable": true,
+                              "maxAge": 60
+                            }
+                          }
+                        },
+                        {
+                          "Control": 1,
+                          "Field": "ReceivedDate",
+                          "FieldByQuery": "ReceivedDate"
+                        },
+                        {
+                          "Control": 1,
+                          "Field": "DueDate",
+                          "FieldByQuery": "DueDate"
+                        },
+                        {
+                          "Control": 57,
+                          "Field": "FileView",
+                          "FieldByQuery": "SourceItemID"
+                        }
+                      ],
+                      "Columns": [
+                        {
+                          "className": "width5",
+                          "field": "FileView",
+                          "header": "Tệp"
+                        },
+                        {
+                          "className": "width5",
+                          "field": "DocNo",
+                          "header": "Số đến",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width15",
+                          "field": "ReceivedDate",
+                          "header": "Ngày đến"
+                        },
+                        {
+                          "className": "width15",
+                          "field": "SenderName",
+                          "header": "Nơi gửi",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width30",
+                          "field": "Body",
+                          "header": "Trích yếu",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width15",
+                          "field": "UrgentLevelName",
+                          "header": "Độ khẩn"
+                        },
+                        {
+                          "className": "width10",
+                          "field": "AssignedTypeName",
+                          "header": "Hình thức"
+                        },
+                        {
+                          "className": "width10",
+                          "field": "StatusName",
+                          "header": "Trạng thái"
+                        },
+                        {
+                          "className": "width15",
+                          "field": "DueDate",
+                          "header": "Hạn xử lý"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "Name": "TabPanel2",
+          "Control": 50,
+          "props": {
+            "header": "Văn bản đi"
+          },
+          "Controls": [
+            {
+              "Name": "__.TableOutgoingProgressionWaiting_Count",
+              "Control": 91,
+              "Expanded": true,
+              "Title": "Văn bản đi chờ cấp số (<%=value%>)",
+              "Controls": [
+                {
+                  "Name": "Row01",
+                  "Control": 92,
+                  "Controls": [
+                    {
+                      "Name": "__.TableOutgoingProgressionWaiting",
+                      "Control": 27,
+                      "HasFunction": true,
+                      "FunctionProperty": "props__onRowDoubleClick:#props__rowClassName",
+                      "props": {
+                        "className": "ed-form-control p-col-12 p-md-12",
+                        "selectionMode": "checkbox",
+                        "lazy": true,
+                        "emptyMessage": "Không có dữ liệu",
+                        "paginator": true,
+                        "paginatorTemplate": "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+                        "currentPageReportTemplate": "Từ {first} tới {last} của {totalRecords} Bản ghi",
+                        "style": {
+                          "cursor": "pointer"
+                        },
+                        "onRowDoubleClick": "({data}) => { let gridName = '__.TableOutgoingProgressionWaiting:#__.TableOutgoingReleaseWaiting'; let resetData = () => { refreshGrid(gridName) }; toDoFormRef?.current?.OpenOutgoingDocument(data, gridName, resetData);  }",
+                        "rowClassName": "(data) => { return {'p-text-bold-500': data?.Status === 0} }"
+                      },
+                      "Request": {
+                        "method": "post",
+                        "endpoint": "edoc/DOC/IncomingDocs/GetMyTodoListSearch",
+                        "payload": {
+                          "DocumentStoreId": "2",
+                          "Status": -1,
+                          "DocNo": 0,
+                          "Notation": "",
+                          "SoPhieuTrinh": "",
+                          "SoPhieuGui": "",
+                          "SoNgayDaTrinh": 0,
+                          "SenderName": "",
+                          "PhaiTheoDoi": false,
+                          "IsDraft": true,
+                          "AssignedType": -1,
+                          "OrgCode": "",
+                          "Body": "",
+                          "Page": 1,
+                          "PageSize": 10,
+                          "OrderBy": "Created",
+                          "StateNotIn": "17",
+                          "ReceivedMethodNotIn": "DI-TCT",
+                          "Type": 0,
+                          "DepartmentCode": ""
+                        }
+                      },
+                      "CustomColumns": [
+                        {
+                          "Control": 6,
+                          "Field": "UrgentLevelName",
+                          "FieldByQuery": "UrgentLevel",
+                          "OptionLabel": "Name",
+                          "OptionValue": "Code",
+                          "Request": {
+                            "method": "get",
+                            "endpoint": "edoc/ctl/Catalog/GetByCategory/UrgentLevel",
+                            "cache": {
+                              "enable": true,
+                              "maxAge": 60
+                            }
+                          }
+                        },
+                        {
+                          "Control": 1,
+                          "Field": "DocDate",
+                          "FieldByQuery": "DocDate"
+                        },
+                        {
+                          "Control": 57,
+                          "Field": "FileView",
+                          "FieldByQuery": "SourceItemID"
+                        },
+                        {
+                          "Control": 6,
+                          "Field": "RoleName",
+                          "FieldByQuery": "RoleID",
+                          "OptionLabel": "Name",
+                          "OptionValue": "ID",
+                          "Request": {
+                            "method": "get",
+                            "endpoint": "edoc/ums/Role/GetByUser",
+                            "cache": {
+                              "enable": true,
+                              "maxAge": 60
+                            }
+                          }
+                        }
+                      ],
+                      "Columns": [
+                        {
+                          "className": "width5",
+                          "selectionMode": "multiple"
+                        },
+                        {
+                          "className": "width5",
+                          "field": "FileView",
+                          "header": "Tệp"
+                        },
+                        {
+                          "className": "width15",
+                          "field": "DepartmentPath",
+                          "header": "Đơn vị soạn thảo",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width15",
+                          "field": "DocDate",
+                          "header": "Ngày v/bản"
+                        },
+                        {
+                          "className": "width50",
+                          "field": "Body",
+                          "header": "Trích yếu",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width20",
+                          "field": "SignedBy",
+                          "header": "Người ký"
+                        },
+                        {
+                          "className": "width15",
+                          "field": "UrgentLevelName",
+                          "header": "Độ khẩn"
+                        },
+                        {
+                          "className": "width15",
+                          "field": "RoleName",
+                          "header": "Vai trò"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "Row03",
+                  "Control": 92,
+                  "Controls": [
+                    {
+                      "Name": "Progression",
+                      "Control": 25,
+                      "props": {
+                        "className": "p-ml-2",
+                        "label": "Cấp số"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Name": "__.TableOutgoingReleaseWaiting_Count",
+              "Control": 91,
+              "Expanded": false,
+              "Title": "Văn bản đi đã cấp số chờ phát hành (<%=value%>)",
+              "Controls": [
+                {
+                  "Name": "Row02",
+                  "Control": 92,
+                  "Controls": [
+                    {
+                      "Name": "__.TableOutgoingReleaseWaiting",
+                      "Control": 27,
+                      "HasFunction": true,
+                      "FunctionProperty": "props__onRowDoubleClick:#props__rowClassName",
+                      "props": {
+                        "className": "ed-form-control p-col-12 p-md-12",
+                        "selectionMode": "checkbox",
+                        "lazy": true,
+                        "emptyMessage": "Không có dữ liệu",
+                        "paginator": true,
+                        "paginatorTemplate": "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+                        "currentPageReportTemplate": "Từ {first} tới {last} của {totalRecords} Bản ghi",
+                        "style": {
+                          "cursor": "pointer"
+                        },
+                        "onRowDoubleClick": "({data}) => { let gridName = '__.TableOutgoingProgressionWaiting:#__.TableOutgoingReleaseWaiting'; let resetData = () => { refreshGrid(gridName) }; toDoFormRef?.current?.OpenOutgoingDocument(data, gridName, resetData);  }",
+                        "rowClassName": "(data) => { return {'p-text-bold-500': data?.Status === 0} }"
+                      },
+                      "Request": {
+                        "method": "post",
+                        "endpoint": "edoc/DOC/IncomingDocs/GetMyTodoListSearch",
+                        "payload": {
+                          "IsWaitRelease": true,
+                          "DocumentStoreId": "2",
+                          "DocNo": 0,
+                          "Notation": "",
+                          "SoPhieuTrinh": "",
+                          "SoPhieuGui": "",
+                          "SoNgayDaTrinh": 0,
+                          "SenderName": "",
+                          "PhaiTheoDoi": false,
+                          "IsDraft": false,
+                          "AssignedType": -1,
+                          "OrgCode": "",
+                          "Body": "",
+                          "Page": 1,
+                          "PageSize": 10,
+                          "ReceivedMethodNotIn": "DI-TCT",
+                          "OrderBy": "Created",
+                          "Type": 0,
+                          "DepartmentCode": ""
+                        }
+                      },
+                      "CustomColumns": [
+                        {
+                          "Control": 6,
+                          "Field": "UrgentLevelName",
+                          "FieldByQuery": "UrgentLevel",
+                          "OptionLabel": "Name",
+                          "OptionValue": "Code",
+                          "Request": {
+                            "method": "get",
+                            "endpoint": "edoc/ctl/Catalog/GetByCategory/UrgentLevel",
+                            "cache": {
+                              "enable": true,
+                              "maxAge": 60
+                            }
+                          }
+                        },
+                        {
+                          "Control": 1,
+                          "Field": "DocDate",
+                          "FieldByQuery": "DocDate"
+                        },
+                        {
+                          "Control": 57,
+                          "Field": "FileView",
+                          "FieldByQuery": "SourceItemID"
+                        },
+                        {
+                          "Control": 6,
+                          "Field": "RoleName",
+                          "FieldByQuery": "RoleID",
+                          "OptionLabel": "Name",
+                          "OptionValue": "ID",
+                          "Request": {
+                            "method": "get",
+                            "endpoint": "edoc/ums/Role/GetByUser",
+                            "cache": {
+                              "enable": true,
+                              "maxAge": 60
+                            }
+                          }
+                        }
+                      ],
+                      "Columns": [
+                        {
+                          "className": "width5",
+                          "selectionMode": "multiple"
+                        },
+                        {
+                          "className": "width5",
+                          "field": "FileView",
+                          "header": "Tệp"
+                        },
+                        {
+                          "className": "width5",
+                          "field": "DocNo",
+                          "header": "Số đi",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width15",
+                          "field": "DepartmentPath",
+                          "header": "Đơn vị soạn thảo",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width15",
+                          "field": "DocDate",
+                          "header": "Ngày v/bản"
+                        },
+                        {
+                          "className": "width10",
+                          "field": "DocLabel",
+                          "header": "Số ký hiệu",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width35",
+                          "field": "Body",
+                          "header": "Trích yếu",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width10",
+                          "field": "SignedBy",
+                          "header": "Người ký"
+                        },
+                        {
+                          "className": "width15",
+                          "field": "UrgentLevelName",
+                          "header": "Độ khẩn"
+                        },
+                        {
+                          "className": "width15",
+                          "field": "RoleName",
+                          "header": "Vai trò"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Name": "Row03",
+                  "Control": 92,
+                  "Controls": [
+                    {
+                      "Name": "Release",
+                      "Control": 25,
+                      "props": {
+                        "className": "p-ml-2",
+                        "label": "Phát hành"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Name": "__.OutgoingProgressionWaitingMinistry_Count",
+              "Control": 91,
+              "Expanded": false,
+              "Title": "Văn bản đi chờ lấy số Bộ phát hành (<%=value%>)",
+              "Controls": [
+                {
+                  "Name": "Row02",
+                  "Control": 92,
+                  "Controls": [
+                    {
+                      "Name": "__.OutgoingProgressionWaitingMinistry",
+                      "Control": 27,
+                      "HasFunction": true,
+                      "FunctionProperty": "props__onRowDoubleClick:#props__rowClassName",
+                      "props": {
+                        "className": "ed-form-control p-col-12 p-md-12",
+                        "selectionMode": "checkbox",
+                        "lazy": true,
+                        "emptyMessage": "Không có dữ liệu",
+                        "paginator": true,
+                        "paginatorTemplate": "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+                        "currentPageReportTemplate": "Từ {first} tới {last} của {totalRecords} Bản ghi",
+                        "style": {
+                          "cursor": "pointer"
+                        },
+                        "onRowDoubleClick": "({data}) => { let gridName = '__.OutgoingProgressionWaitingMinistry'; let resetData = () => { refreshGrid(gridName) }; toDoFormRef?.current?.OpenOutgoingDocument(data, gridName, resetData);  }",
+                        "rowClassName": "(data) => { return {'p-text-bold-500': data?.Status === 0} }"
+                      },
+                      "Request": {
+                        "method": "post",
+                        "endpoint": "edoc/DOC/IncomingDocs/GetMyTodoListSearch",
+                        "payload": {
+                          "DocumentStoreId": "2",
+                          "Status": -1,
+                          "DocNo": 0,
+                          "Notation": "",
+                          "SoPhieuTrinh": "",
+                          "SoPhieuGui": "",
+                          "SoNgayDaTrinh": 0,
+                          "SenderName": "",
+                          "PhaiTheoDoi": false,
+                          "IsDraft": true,
+                          "AssignedType": -1,
+                          "OrgCode": "",
+                          "Body": "",
+                          "Page": 1,
+                          "PageSize": 10,
+                          "OrderBy": "Created",
+                          "ReceivedMethod": "DI-TCT",
+                          "Type": 0,
+                          "DepartmentCode": ""
+                        }
+                      },
+                      "CustomColumns": [
+                        {
+                          "Control": 6,
+                          "Field": "UrgentLevelName",
+                          "FieldByQuery": "UrgentLevel",
+                          "OptionLabel": "Name",
+                          "OptionValue": "Code",
+                          "Request": {
+                            "method": "get",
+                            "endpoint": "edoc/ctl/Catalog/GetByCategory/UrgentLevel",
+                            "cache": {
+                              "enable": true,
+                              "maxAge": 60
+                            }
+                          }
+                        },
+                        {
+                          "Control": 1,
+                          "Field": "DocDate",
+                          "FieldByQuery": "DocDate"
+                        },
+                        {
+                          "Control": 57,
+                          "Field": "FileView",
+                          "FieldByQuery": "SourceItemID"
+                        },
+                        {
+                          "Control": 6,
+                          "Field": "RoleName",
+                          "FieldByQuery": "RoleID",
+                          "OptionLabel": "Name",
+                          "OptionValue": "ID",
+                          "Request": {
+                            "method": "get",
+                            "endpoint": "edoc/ums/Role/GetByUser",
+                            "cache": {
+                              "enable": true,
+                              "maxAge": 60
+                            }
+                          }
+                        }
+                      ],
+                      "Columns": [
+                        {
+                          "className": "width5",
+                          "selectionMode": "multiple"
+                        },
+                        {
+                          "className": "width5",
+                          "field": "FileView",
+                          "header": "Tệp"
+                        },
+                        {
+                          "className": "width15",
+                          "field": "DepartmentPath",
+                          "header": "Đơn vị soạn thảo",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width15",
+                          "field": "DocDate",
+                          "header": "Ngày v/bản"
+                        },
+                        {
+                          "className": "width10",
+                          "field": "DocLabel",
+                          "header": "Số ký hiệu",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width35",
+                          "field": "Body",
+                          "header": "Trích yếu",
+                          "filter": true,
+                          "filterPlaceholder": "Tìm..."
+                        },
+                        {
+                          "className": "width10",
+                          "field": "SignedBy",
+                          "header": "Người ký"
+                        },
+                        {
+                          "className": "width15",
+                          "field": "UrgentLevelName",
+                          "header": "Độ khẩn"
+                        },
+                        {
+                          "className": "width15",
+                          "field": "RoleName",
+                          "header": "Vai trò"
+                        },
+                        {
+                          "className": "width15",
+                          "field": "StatusName",
+                          "header": "Trạng thái"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

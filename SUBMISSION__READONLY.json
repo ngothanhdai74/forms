@@ -1,0 +1,518 @@
+{
+	"Controls": [
+		{
+			"Name": "Row1",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "InputGroup",
+					"Title": "Lần trình trước",
+					"Control": 8,
+					"InputName": "NumberSubmission",
+					"Controls": [
+						{
+							"Name": "NumberSubmission",
+							"Control": 6,
+							"Large": false,
+							"Request": {
+								"method": "get",
+								"endpoint": ""
+							},
+							"props": {
+								"optionLabel": "Name",
+								"optionValue": "ID"
+							}
+						},
+						{
+							"Name": "bttXemToTrinh",
+							"Control": 25,
+							"props": {
+								"icon": "pi pi-search p-pl-3 p-pr-3"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name": "Row2",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "DocumentRegisterID",
+					"Title": "Loại tờ trình",
+					"Control": 6,
+					"ReadOnly": true,
+					"Request": {
+						"method": "get",
+						"endpoint": "edoc/dms/DocumentRegister/GetByStoreAndDefault?documentStoreId=3&isDefault=false",
+						"cache": {
+							"enable": true,
+							"maxAge": 60
+						}
+					},
+					"props": {
+						"optionLabel": "Name",
+						"optionValue": "Code",
+						"disabled": true
+					}
+				},
+				{
+					"Name": "DocLabel",
+					"Title": "Số tờ trình",
+					"Control": 10,
+					"Validations": {
+						"MaxLength": 30
+					},
+					"props": {
+						"placeholder": "",
+						"disabled": true
+					}
+				}
+			]
+		},
+		{
+			"Name": "Row3",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "Brief",
+					"Title": "Trích yếu",
+					"Validations": {
+						"Required": true,
+						"MaxLength": 500
+					},
+					"Control": 11,
+					"props": {
+						"rows": 3,
+						"autoResize": true,
+						"disabled": true
+					}
+				}
+			]
+		},
+		{
+			"Name": "Tab1",
+			"Control": 91,
+			"Title": "Thông tin chi tiết",
+			"Controls": [
+				{
+					"Name": "Row4",
+					"Control": 92,
+					"Controls": [
+						{
+							"Name": "Created",
+							"Title": "Ngày tạo",
+							"Control": 1,
+							"Validations": {
+								"Required": true
+							},
+							"props": {
+								"dateFormat": "dd/mm/yy",
+								"mask": "99/99/9999",
+								"showIcon": true,
+								"showButtonBar": true,
+								"monthNavigator": true,
+								"yearNavigator": true,
+								"yearRange": "2000:2030",
+								"disabled": true
+							}
+						},
+						{
+							"Name": "UrgentLevel",
+							"Title": "Độ khẩn",
+							"Control": 6,
+							"ExtField": "Name",
+							"ExtFieldName": "UrgentLevelName",
+							"Request": {
+								"method": "get",
+								"endpoint": "edoc/ctl/Catalog/GetByCategory/UrgentLevel",
+								"cache": {
+									"enable": true,
+									"maxAge": 60
+								}
+							},
+							"props": {
+								"optionLabel": "Name",
+								"optionValue": "Code",
+								"disabled": true
+							}
+						}
+					]
+				},
+				{
+					"Name": "Row5",
+					"Control": 92,
+					"Controls": [
+						{
+							"Name": "Editor",
+							"Title": "Người soạn thảo",
+							"Control": 10,
+							"Validations": {
+								"MaxLength": 50
+							},
+							"props": {
+								"disabled": true
+							}
+						},
+						{
+							"Name": "DeptEditor",
+							"Title": "Phòng soạn thảo",
+							"Control": 10,
+							"Validations": {
+								"MaxLength": 200
+							},
+							"props": {
+								"disabled": true
+							}
+						}
+					]
+				},
+				{
+					"Name": "Row7",
+					"Control": 92,
+					"Controls": [
+						{
+							"Name": "Notes",
+							"Title": "Ghi chú",
+							"Validations": {
+								"MaxLength": 500
+							},
+							"Control": 11,
+							"props": {
+								"rows": 3,
+								"autoResize": true,
+								"disabled": true
+							}
+						}
+					]
+				},
+				{
+					"Name": "Row7A",
+					"Control": 92,
+					"Controls": [
+						{
+							"Name": "ContentStreams",
+							"Title": "Tệp tờ trình ký số",
+							"Control": 57,
+							"DocumentStoreId": 3,
+							"ContentType": "1",
+							"MultiValue": true,
+							"AllowSign": true,
+							"Large": true,
+							"DisableDelete": true,
+							"props": {
+								"maxFileSize": 1048576,
+								"auto": true,
+								"customUpload": true,
+								"disabled": true
+							},
+							"ReadOnly": true,
+							"Validations": {}
+						}
+					]
+				},
+				{
+					"Name": "Row8A",
+					"Control": 92,
+					"Controls": [
+						{
+							"Name": "Link_ContentStreams",
+							"Title": "Văn bản trình kèm",
+							"Control": 57,
+							"DocumentStoreId": 3,
+							"ContentType": "3",
+							"MultiValue": true,
+							"Large": true,
+							"ReadOnly": true,
+							"DisableDelete": true,
+							"props": {
+								"maxFileSize": 1048576,
+								"auto": true,
+								"customUpload": true,
+								"disabled": true
+							}
+						}
+					]
+				},
+				{
+					"Name": "Row13",
+					"Control": 92,
+					"Controls": [
+						{
+							"Name": "Props.SolveInfo",
+							"Title": "Ý kiến xử lý",
+							"Control": 11,
+							"props": {
+								"rows": 2,
+								"autoResize": true,
+								"disabled": true
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name": "Row14",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "table_empty",
+					"Control": 93,
+					"Title": "Văn bản gốc",
+					"ControlClass": "p-col-12 p-md-2"
+				},
+				{
+					"Name": "tableOriginDocument",
+					"Control": 27,
+					"props": {
+						"className": "p-col-12 p-md-10",
+						"emptyMessage": "Không có dữ liệu"
+					},
+					"Columns": [
+						{
+							"field": "DocLabel",
+							"header": "Số Ký Hiệu"
+						},
+						{
+							"field": "DocumentStoreID",
+							"header": "Loại văn bản",
+							"style": {
+								"width": "15%"
+							}
+						},
+						{
+							"field": "DocDate",
+							"header": "Ngày văn bản"
+						},
+						{
+							"field": "Bref",
+							"header": "Trích yếu"
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name": "Row018",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "table_empty018",
+					"Control": 93,
+					"Title": "Văn bản liên quan",
+					"ControlClass": "p-col-12 p-md-2"
+				},
+				{
+					"Name": "tableRelativeDocument",
+					"Control": 27,
+					"props": {
+						"className": "p-col-12 p-md-10",
+						"selectionMode": "single",
+						"emptyMessage": "Không có dữ liệu"
+					},
+					"Columns": [
+						{
+							"selectionMode": "multiple",
+							"style": {
+								"width": "5%"
+							}
+						},
+						{
+							"field": "DocLabel",
+							"header": "Số ký hiệu",
+							"style": {
+								"width": "15%"
+							}
+						},
+						{
+							"field": "DocumentStoreId",
+							"header": "Loại văn bản",
+							"style": {
+								"width": "15%"
+							}
+						},
+						{
+							"field": "DocDate",
+							"header": "Ngày văn bản",
+							"style": {
+								"width": "15%"
+							}
+						},
+						{
+							"field": "Brief",
+							"header": "Trích yếu",
+							"style": {
+								"width": "50%"
+							}
+						}
+					]
+				}
+			]
+		},
+		{
+			"Name": "Row014",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "table_empty4",
+					"Control": 93,
+					"ControlClass": "p-col-12 p-md-12"
+				}
+			]
+		},
+		{
+			"Name": "Tab3",
+			"Control": 91,
+			"Title": "Quá trình luân chuyển cho ý kiến",
+			"Controls": [
+				{
+					"Name": "Row16",
+					"Control": 92,
+					"Controls": [
+						{
+							"Name": "tbYKienLD",
+							"Control": 27,
+							"props": {
+								"className": "p-col-12 p-md-12",
+								"header": "Ý kiến lãnh đạo",
+								"emptyMessage": "Không có dữ liệu"
+							},
+							"Columns": [
+								{
+									"field": "CreatedByName",
+									"header": "Người chuyển",
+									"style": {
+										"width": "15%"
+									}
+								},
+								{
+									"field": "RoleName",
+									"header": "Vai trò chuyển",
+									"style": {
+										"width": "15%"
+									}
+								},
+								{
+									"field": "Created",
+									"header": "Ngày chuyển",
+									"style": {
+										"width": "15%"
+									}
+								},
+								{
+									"field": "Comment",
+									"header": "Ý kiến",
+									"style": {
+										"width": "40%"
+									}
+								},
+								{
+									"field": "Recipients",
+									"header": "Đơn vị nhận ",
+									"style": {
+										"width": "15%"
+									}
+								}
+							]
+						}
+					]
+				},
+				{
+					"Name": "Row17P",
+					"Control": 92,
+					"Controls": [
+						{
+							"Name": "tbYKienPhongCN",
+							"Control": 27,
+							"props": {
+								"className": "p-col-12 p-md-12",
+								"header": "Ý kiến phòng chức năng",
+								"emptyMessage": "Không có dữ liệu"
+							},
+							"Columns": [
+								{
+									"field": "CreatedByName",
+									"header": "Người chuyển",
+									"style": {
+										"width": "15%"
+									}
+								},
+								{
+									"field": "RoleName",
+									"header": "Vai trò chuyển",
+									"style": {
+										"width": "15%"
+									}
+								},
+								{
+									"field": "Created",
+									"header": "Ngày chuyển",
+									"style": {
+										"width": "15%"
+									}
+								},
+								{
+									"field": "Comment",
+									"header": "Ý kiến",
+									"style": {
+										"width": "40%"
+									}
+								},
+								{
+									"field": "Recipients",
+									"header": "Đơn vị nhận ",
+									"style": {
+										"width": "15%"
+									}
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"Buttons": [
+ {
+            "Name": "RecallRole",
+            "Control": 25,
+            "props": {
+                "label": "Thu hồi",
+                "className": "p-mt-2"
+            }
+        },
+		{
+			"Name": "Profile",
+			"Control": 25,
+			"props": {
+				"label": "Hồ sơ",
+				"className": "p-mt-2"
+			}
+		},
+		{
+			"Name": "History",
+			"Control": 25,
+			"props": {
+				"label": "Lịch sử",
+				"className": "p-mt-2"
+			}
+		},{
+			"Name": "TransferStorage",
+			"Control": 25,
+			"props": {
+				"label": "Chuyển lưu trữ",
+				"className": "p-mt-2"
+			}
+		},
+		{
+			"Name": "Close",
+			"Control": 25,
+			"props": {
+				"label": "Đóng",
+				"className": "p-mt-2"
+			}
+		}
+	]
+}

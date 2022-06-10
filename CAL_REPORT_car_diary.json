@@ -1,0 +1,36 @@
+{
+	"Title": "Báo cáo tình hình sử dụng xe theo ngày",
+	"Controls": [
+		{
+			"Name": "Row1",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "Date",
+					"Title": "Ngày",
+					"Control": 1,
+					"props": {
+						"dateFormat": "dd/mm/yy",
+						"mask": "99/99/9999",
+						"showIcon": true,
+						"showButtonBar": true,
+						"monthNavigator": true,
+						"yearNavigator": true,
+						"showOnFocus": false,
+						"yearRange": "2000:2030"
+					}
+				}
+			]
+		}
+	],
+	"Buttons": [
+		{
+			"Name": "ViewCarInday",
+			"Control": 25,
+			"Type": "Submit",
+			"props": {
+				"label": "Xem báo cáo"
+			}
+		}
+	]
+}

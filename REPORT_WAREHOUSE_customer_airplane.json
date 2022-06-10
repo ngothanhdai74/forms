@@ -1,0 +1,101 @@
+{
+    "Title": "Báo cáo số lượng hành khách xuất nhập cảnh đường không",
+    "Controls": [{
+            "Name": "Row1",
+            "Control": 92,
+            "Controls": [{
+                    "Name": "OrgUnit",
+                    "Title": "Cục Hải quan",
+                    "Control": 6,
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/rpt/DecisionSupport/GetCategoryDecisionSupport?typeCategory=CUC",
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "props": {
+                        "showClear": true,
+                        "optionLabel": "NAME",
+                        "optionValue": "ID",
+                        "placeholder": "Tất cả",
+                        "emptyMessage": "Không có dữ liệu"
+                    }
+                }, {
+                    "Name": "Cang",
+                    "Title": "Cảng Hải quan",
+                    "Control": 6,
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "",
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "props": {
+                        "showClear": true,
+                        "optionLabel": "NAME",
+                        "optionValue": "ID",
+                        "placeholder": "Lựa chọn",
+                        "emptyMessage": "Không có dữ liệu"
+                    }
+                }
+            ]
+        }, {
+            "Name": "Row2",
+            "Control": 92,
+            "Controls": [{
+                    "Name": "Type",
+                    "Control": 6,
+                    "Title": "Loại hình XNC",
+                    "props": {
+                        "optionValue": "Code",
+                        "optionLabel": "Name",
+                        "emptyMessage": "Không có dữ liệu"
+                    }
+                }, {
+                    "Name": "DateReport",
+                    "Control": 1,
+                    "Title": "Ngày báo cáo",
+                    "Validations": {
+                        "Required": true
+                    },
+                    "props": {
+                        "showIcon": true,
+                        "showOnFocus": false,
+                        "mask": "99/99/9999",
+                        "dateFormat": "dd/mm/yy"
+                    }
+                }
+            ]
+        }
+    ],
+    "Buttons": [{
+            "Name": "ViewCustomerByPlane",
+            "Control": 25,
+            "props": {
+                "label": "Xem báo cáo"
+            }
+        }, {
+            "Name": "CustomerByPlaneRefresh",
+            "Control": 25,
+            "props": {
+                "label": "Làm mới"
+            }
+        }, {
+            "Name": "CustomerByPlaneExcel",
+            "Control": 25,
+            "props": {
+                "label": "Xuất file excel"
+            }
+        }, {
+            "Name": "CustomerByPlanePDF",
+            "Control": 25,
+            "props": {
+                "label": "Xuất file pdf"
+            }
+        }
+    ]
+}

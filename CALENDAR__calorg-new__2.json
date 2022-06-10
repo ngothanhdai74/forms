@@ -1,0 +1,244 @@
+{
+    "Controls": [
+        {
+            "Name": "Row1",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "CreatedByName",
+                    "Control": 10,
+                    "Title": "Người đăng ký",
+                    "props": {
+                        "disabled": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row2",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.Unit",
+                    "Title": "Đơn vị",
+                    "ControlClass": "p-col-12 p-md-10",
+                    "Control": 94,
+                    "Validations": {
+                        "Required": true
+                    },
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/ums/Organization/GetOrgByParentAndType?orgCode=BTC&type=0&getParent=true",
+                        "payload": {},
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "ValueTemplate": "<%=ID%>:#<%=Code%>:#<%=Name%>",
+                    "ItemTemplate": "<%=Code%>|<%=Name%>",
+                    "SelectedItemTemplate": "<%=Name%>",
+                    "Large": true,
+                    "props": {
+                        "field": "Code|%Name",
+                        "multiple": false,
+                        "forceSelection": true,
+                        "autoHighlight": true,
+                        "disabled": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row3",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "StartTime",
+                    "Control": 1,
+                    "Title": "Thời gian bắt đầu",
+                    "Validations": {
+                        "Required": true,
+                        "Formula": {
+                            "Expression": "<%=(StartTime > EndTime)%>",
+                            "ErrorMessage": "Thời gian bắt đầu phải nhỏ hơn hoặc bằng Thời gian kết thúc"
+                        }
+                    },
+                    "props": {
+                        "showIcon": true,
+                        "mask": "99/99/9999",
+                        "showOnFocus": false,
+                        "dateFormat": "dd/mm/yy",
+                        "showTime": true
+                    }
+                },
+                {
+                    "Name": "EndTime",
+                    "Control": 1,
+                    "Title": "Thời gian kết thúc",
+                    "Validations": {
+                        "Required": true,
+                        "Formula": {
+                            "Expression": "<%=(StartTime > EndTime)%>",
+                            "ErrorMessage": "Thời gian bắt đầu phải nhỏ hơn hoặc bằng Thời gian kết thúc"
+                        }
+                    },
+                    "props": {
+                        "showIcon": true,
+                        "mask": "99/99/9999",
+                        "showOnFocus": false,
+                        "dateFormat": "dd/mm/yy",
+                        "showTime": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row4",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Body",
+                    "Control": 11,
+                    "Title": "Nội dung",
+                    "props": {
+                        "rows": 3
+                    },
+                    "Validations": {
+                        "Required": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row5",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.LeaderHost",
+                    "Control": 11,
+                    "Title": "Chủ trì",
+                    "props": {
+                        "rows": 3
+                    },
+                    "Validations": {
+                        "Required": false
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row6",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.Attendes",
+                    "Control": 11,
+                    "Title": "Thành phần tham dự"
+                }
+            ]
+        },
+{
+            "Name": "Row3",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.RoomValue",
+                    "Control": 94,
+                    "Title": "Phòng",
+                    
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/cal/CalendarResource/GetByTypeCode?code=PHH",
+                        "payload": {},
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "ValueTemplate": "<%=ID%>:#<%=Code%>:#<%=Name%>",
+                    "LabelTemplate": "<%=Code%> - <%=Name%>",
+                    "ItemTemplate": "<%=Code%>|<%=Name%>",
+                    "SelectedItemTemplate": "<%=Code%>",
+                    "Large": false,
+                    "props": {
+                        "field": "Code|%Name",
+                        "multiple": false,
+                        "forceSelection": true,
+                        "autoHighlight": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row7",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Location",
+                    "Title": "Địa điểm họp",
+                    "Control": 10,
+                    "ControlClass": "p-col-12 p-md-10",
+                    "Validations": {
+                        "MaxLength": 500
+                    }
+                }
+            ]
+        },
+	{
+			"Name": "RowFile",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "ContentStreams",
+					"Title": "File đính kèm",
+					"Control": 57,
+					"DocumentStoreId": 7,
+					"ContentType": "0",
+					"MultiValue": true,
+					"Large": true,
+					"props": {
+						"maxFileSize": 1048576,
+						"auto": true,
+						"customUpload": true
+					}
+				}
+			]
+		},
+
+        {
+            "Name": "Row8",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Note",
+                    "Control": 11,
+                    "Title": "Ghi chú",
+                    "props": {
+                        "rows": 3
+                    }
+                }
+            ]
+        }
+    ],
+    "Buttons": [
+        {
+            "Name": "AddEvent",
+            "Control": 25,
+            "props": {
+                "label": "Ghi lại",
+                "type": "button",
+                "className": "p-mt-2"
+            }
+        },
+        {
+            "Name": "Close",
+            "Control": 25,
+            "props": {
+                "label": "Đóng",
+                "type": "button",
+                "className": "p-mt-2"
+            }
+        }
+    ]
+}

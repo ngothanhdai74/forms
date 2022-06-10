@@ -1,0 +1,39 @@
+{
+	"Title": "Báo cáo lịch công tác Lãnh đạo Tổng cục theo tuần",
+	"Controls": [
+		{
+			"Name": "Row1",
+			"Control": 92,
+			"Controls": [
+				{
+					"Name": "Week",
+					"Control": 6,
+					"Title": "Tuần",
+					"props": {
+						"optionLabel": "Name",
+						"optionValue": "Code"
+					}
+				},
+				{
+					"Name": "Year",
+					"Control": 6,
+					"Title": "Năm",
+					"props": {
+						"optionLabel": "Name",
+						"optionValue": "Code"
+					}
+				}
+			]
+		}
+	],
+	"Buttons": [
+		{
+			"Name": "LeaderViewReport",
+			"Control": 25,
+			"Type": "Submit",
+			"props": {
+				"label": "Xem báo cáo"
+			}
+		}
+	]
+}

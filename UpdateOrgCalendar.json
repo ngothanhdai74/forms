@@ -1,0 +1,207 @@
+{
+    "Controls": [
+        {
+            "Name": "Row1",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "CreatedByName",
+                    "Control": 10,
+                    "Title": "Người đăng ký",
+                    "props": {
+                        "disabled": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row2",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.Unit",
+                    "Title": "Đơn vị",
+                    "ControlClass": "p-col-12 p-md-10",
+                    "Control": 94,
+                    "Validations": {
+                        "Required": true
+                    },
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/ums/Organization/GetOrgByParentAndType?orgCode=BTC&type=0&getParent=true",
+                        "payload": {},
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "ValueTemplate": "<%=ID%>:#<%=Code%>:#<%=Name%>",
+                    "LabelTemplate": "<%=Name%>",
+                    "ItemTemplate": "<%=Code%>|<%=Name%>",
+                    "SelectedItemTemplate": "<%=Name%>",
+                    "Large": true,
+                    "props": {
+                        "field": "Code|%Name",
+                        "multiple": false,
+                        "forceSelection": true,
+                        "autoHighlight": true,
+                        "disabled": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row3",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "StartTime",
+                    "Control": 1,
+                    "Title": "Thời gian bắt đầu",
+                    "Validations": {
+                        "Required": true,
+                        "Formula": {
+                            "Expression": "<%=(StartTime > EndTime)%>",
+                            "ErrorMessage": "Thời gian bắt đầu phải nhỏ hơn hoặc bằng Thời gian kết thúc"
+                        }
+                    },
+                    "props": {
+                        "showIcon": true,
+                        "mask": "99/99/9999",
+                        "showOnFocus": false,
+                        "dateFormat": "dd/mm/yy",
+                        "showTime": true
+                    }
+                },
+                {
+                    "Name": "EndTime",
+                    "Control": 1,
+                    "Title": "Thời gian kết thúc",
+                    "Validations": {
+                        "Required": true,
+                        "Formula": {
+                            "Expression": "<%=(StartTime > EndTime)%>",
+                            "ErrorMessage": "Thời gian bắt đầu phải nhỏ hơn hoặc bằng Thời gian kết thúc"
+                        }
+                    },
+                    "props": {
+                        "showIcon": true,
+                        "mask": "99/99/9999",
+                        "showOnFocus": false,
+                        "dateFormat": "dd/mm/yy",
+                        "showTime": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row4",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Body",
+                    "Control": 11,
+                    "Title": "Nội dung",
+                    "props": {
+                        "rows": 3
+                    },
+                    "Validations": {
+                        "Required": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row5",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.LeaderHost",
+                    "Control": 6,
+                    "Title": "Lãnh đạo chủ trì",
+                    "props": {
+                        "optionLabel": "Name",
+                        "optionValue": "Code"
+                    },
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/ctl/Catalog/GetByCategory/Leader",
+                        "payload": {},
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row6",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.Attendes",
+                    "Control": 11,
+                    "Title": "Thành phần tham dự"
+                }
+            ]
+        },
+        {
+            "Name": "Row7",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Location",
+                    "Title": "Địa điểm họp",
+                    "Control": 10,
+                    "ControlClass": "p-col-12 p-md-10",
+                    "Validations": {
+                        "MaxLength": 500
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row8",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Note",
+                    "Control": 11,
+                    "Title": "Ghi chú",
+                    "props": {
+                        "rows": 3
+                    }
+                }
+            ]
+        }
+    ],
+    "Buttons": [
+        {
+            "Name": "UpdateOrgCal",
+            "Control": 25,
+            "props": {
+                "label": "Ghi lại",
+                "type": "submit",
+                "className": "p-mt-2"
+            }
+        },
+        {
+            "Name": "DeleteOrgCal",
+            "Control": 25,
+            "props": {
+                "label": "Xóa",
+                "className": "p-mt-2"
+            }
+        },
+        {
+            "Name": "Close",
+            "Control": 25,
+            "props": {
+                "label": "Đóng",
+                "type": "button",
+                "className": "p-mt-2"
+            }
+        }
+    ]
+}

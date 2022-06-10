@@ -1,0 +1,584 @@
+{
+    "Controls": [
+        {
+            "Name": "Row1",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "DocumentRegisterName",
+                    "Title": "Loại sổ",
+                    "Control": 10,
+                    "props": {
+                        "tabIndex": -1,
+                        "disabled": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row2",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "DocNo",
+                    "Title": "Số đến",
+                    "Control": 10,
+                    "props": {
+                        "disabled": true
+                    }
+                },
+                {
+                    "Name": "ReceivedDate",
+                    "Title": "Ngày đến",
+                    "Control": 1,
+                    "Validations": {
+                        "Required": true,
+                        "Formula": {
+                            "Expression": "<%=((new Date(ReceivedDate)).withoutTime() > (new Date()).withoutTime())%>",
+                            "ErrorMessage": "Ngày đến không được sau ngày hiện tại."
+                        }
+                    },
+                    "props": {
+                        "dateFormat": "dd/mm/yy",
+                        "mask": "99/99/9999",
+                        "showIcon": true,
+                        "showButtonBar": true,
+                        "monthNavigator": true,
+                        "yearNavigator": true,
+                        "yearRange": "2000:2030"
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row3",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "SourceDocNo",
+                    "Title": "Số ký hiệu",
+                    "Control": 10,
+                    "LabelClass": "p-col-4 p-md-2",
+                    "ControlClass": "p-md-2",
+                    "Validations": {
+                        "MaxLength": 11
+                    },
+                    "props": {}
+                },
+                {
+                    "Name": "Notation",
+                    "HideLabel": true,
+                    "ControlClass": "p-md-2",
+                    "Control": 95,
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/ctl/Catalog/GetByCategory/DocNotation",
+                        "payload": {},
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "Validations": {
+                        "MaxLength": 30
+                    },
+                    "ValueTemplate": "<%=Name%>",
+                    "props": {
+                        "multiple": false,
+                        "forceSelection": false,
+                        "autoHighlight": true,
+                        "delay": 10
+                    }
+                },
+                {
+                    "Name": "DocDate",
+                    "Title": "Ngày văn bản",
+                    "Control": 1,
+                    "Validations": {
+                        "Formula": {
+                            "Expression": "<%=(DocDate && (new Date(DocDate)).withoutTime() > (new Date(ReceivedDate)).withoutTime())%>",
+                            "ErrorMessage": "Ngày văn bản không được lớn hơn ngày đến"
+                        }
+                    },
+                    "props": {
+                        "dateFormat": "dd/mm/yy",
+                        "mask": "99/99/9999",
+                        "showOnFocus": false,
+                        "showIcon": true,
+                        "showButtonBar": true,
+                        "monthNavigator": true,
+                        "yearNavigator": true,
+                        "yearRange": "2020:2030"
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row4",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.Sender",
+                    "Title": "Nơi gửi",
+                    "Control": 94,
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/ctl/Sender/GetSender",
+                        "payload": {},
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 15
+                        }
+                    },
+                    "ValueTemplate": "<%=ID%>:#<%=Code%>:#<%=Name%>",
+                    "LabelTemplate": "<%=Name%>",
+                    "ExtLabelFieldName": "SenderName",
+                    "ItemTemplate": "<%=InputCode%>|<%=Name%>",
+                    "SelectedItemTemplate": "<%=Code%>",
+                    "Large": false,
+                    "props": {
+                        "field": "InputCode|Code|%Name",
+                        "multiple": false,
+                        "forceSelection": true,
+                        "autoHighlight": true
+                    },
+                    "Validations": {
+                        "Required": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row5",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "DocumentTypeID",
+                    "Title": "Loại văn bản",
+                    "Control": 6,
+                    "ExtField": "Name",
+                    "ExtFieldName": "DocumentTypeName",
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/doc/Common/GetDocumentType",
+                        "payload": {},
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "Validations": {},
+                    "props": {
+                        "optionLabel": "Name",
+                        "optionValue": "Code",
+                        "showClear": true
+                    }
+                },
+                {
+                    "Name": "UrgentLevel",
+                    "Title": "Độ khẩn",
+                    "Control": 6,
+                    "ExtField": "Name",
+                    "ExtFieldName": "UrgentLevelName",
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/ctl/Catalog/GetByCategory/UrgentLevel",
+                        "payload": {},
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "props": {
+                        "optionLabel": "Name",
+                        "optionValue": "Code",
+                        "tabIndex": -1
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row6",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.SecretaryRecipientID",
+                    "Title": "Lãnh đạo xử lý",
+                    "Control": 94,
+                    "QuickInput": {
+                        "Field": "InputCode",
+                        "Length": 2
+                    },
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/DOC/Workflow/GetTargetLeaders?docStoreId=1",
+                        "payload": {},
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "IDTemplate": "0:#ID;#4:#SenderType",
+                    "ValueTemplate": "<%=ID%>:#na:#<%=Code%>:#<%=eID%>:<%=OrgCode%>:<%=Code%>:<%=eCode%>:<%=IsWorkQueue%>:<%=ActivityID%>:#<%=SenderType%>",
+                    "LabelTemplate": "<%=Name%>",
+                    "ExtLabelFieldName": "LeaderRecipientSuggest",
+                    "ItemTemplate": "<%=InputCode%>|<%=Name%>",
+                    "SelectedItemTemplate": "<%=InputCode%>",
+                    "Large": false,
+                    "props": {
+                        "field": "InputCode|%Name|Code",
+                        "multiple": true,
+                        "forceSelection": true,
+                        "autoHighlight": true,
+                        "delay": 10
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row9",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Brief",
+                    "Title": "Trích yếu",
+                    "Control": 11,
+                    "Validations": {
+                        "Required": true,
+                        "MaxLength": 500
+                    },
+                    "Large": true,
+                    "props": {
+                        "rows": 3,
+                        "autoResize": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row10",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Notes",
+                    "Title": "Ghi chú",
+                    "Control": 11,
+                    "props": {
+                        "rows": 2,
+                        "tabIndex": -1,
+                        "autoResize": true
+                    },
+                    "Validations": {
+                        "MaxLength": 500
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row11",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.MeetingStartDate",
+                    "Title": "Thời gian bắt đầu",
+                    "Control": 1,
+                    "props": {
+                        "dateFormat": "dd/mm/yy",
+                        "mask": "99/99/9999",
+                        "showTime": true,
+                        "showIcon": true,
+                        "showButtonBar": true,
+                        "monthNavigator": true,
+                        "yearNavigator": true,
+                        "yearRange": "2020:2030"
+                    },
+                    "Validations": {
+                        "Formula": {
+                            "Expression": "<%=(Props.MeetingStartDate && (Props.MeetingEndDate && (new Date(Props.MeetingStartDate)).withoutTime() > (new Date(Props.MeetingEndDate )).withoutTime()) || (ReceivedDate && (new Date(ReceivedDate)).withoutTime() > (new Date(Props.MeetingStartDate)).withoutTime()))%>",
+                            "ErrorMessage": "Thời gian kết thúc không được nhỏ hơn thời gian bắt đầu và không được nhỏ hơn ngày đến"
+                        }
+                    }
+                },
+                {
+                    "Name": "Props.MeetingEndDate",
+                    "Title": "Thời gian kết thúc",
+                    "Control": 1,
+                    "props": {
+                        "dateFormat": "dd/mm/yy",
+                        "mask": "99/99/9999",
+                        "showTime": true,
+                        "showIcon": true,
+                        "showButtonBar": true,
+                        "monthNavigator": true,
+                        "yearNavigator": true,
+                        "yearRange": "2020:2030"
+                    },
+                    "Validations": {
+                        "Formula": {
+                            "Expression": "<%=(Props.MeetingStartDate && Props.MeetingEndDate && (new Date(Props.MeetingStartDate)).withoutTime() > (new Date(Props.MeetingEndDate )).withoutTime())%>",
+                            "ErrorMessage": "Thời gian kết thúc không được nhỏ hơn thời gian bắt đầu"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row13",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.MeetingLocation",
+                    "Title": "Địa điểm",
+                    "Large": true,
+                    "Control": 10
+                }
+            ]
+        },
+        {
+            "Name": "Row14",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.MeetingLeader",
+                    "Title": "Chủ trì cuộc họp",
+                    "Large": true,
+                    "Control": 10
+                }
+            ]
+        },
+        {
+            "Name": "Row15",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "DueDate",
+                    "Title": "Hạn xử lý",
+                    "Control": 1,
+                    "Validations": {
+                        "Formula": {
+                            "Expression": "<%=(DueDate && (new Date(DueDate)).withoutTime() < (new Date(ReceivedDate)).withoutTime())%>",
+                            "ErrorMessage": "Hạn xử lý không được trước ngày đến"
+                        }
+                    },
+                    "props": {
+                        "dateFormat": "dd/mm/yy",
+                        "mask": "99/99/9999",
+                        "showIcon": true,
+                        "showButtonBar": true,
+                        "monthNavigator": true,
+                        "yearNavigator": true,
+                        "showOnFocus": false,
+                        "yearRange": "2020:2030"
+                    },
+                    "LabelClass": "p-col-6 p-md-2",
+                    "ControlClass": "p-md-4"
+                },
+                {
+                    "Name": "Props.IsTrackingDoc",
+                    "Title": "Phải theo dõi",
+                    "Control": 3,
+                    "HideLabel": true,
+                    "ControlClass": "p-col-6 p-md-2",
+                    "props": {
+                        "tabIndex": -1
+                    }
+                },
+                {
+                    "Name": "Props.IsNoAttachment",
+                    "Title": "Không có File   ",
+                    "Control": 3,
+                    "HideLabel": true,
+                    "ControlClass": "p-col-6 p-md-2"
+                },
+                {
+                    "Name": "WithPaper",
+                    "Title": "Có bản giấy",
+                    "Control": 3,
+                    "HideLabel": true,
+                    "ControlClass": "p-col-6 p-md-2",
+                    "props": {
+                        "tabIndex": -1
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row16",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Language",
+                    "Title": "Ngôn ngữ",
+                    "Control": 6,
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/ctl/Catalog/GetByCategory/Language",
+                        "payload": {},
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "props": {
+                        "optionLabel": "Name",
+                        "optionValue": "Name",
+                        "tabIndex": -1
+                    }
+                },
+                {
+                    "Name": "Pages",
+                    "Title": "Số trang",
+                    "Control": 10,
+                    "props": {
+                        "tabIndex": -1,
+                        "keyfilter": "pint"
+                    },
+                    "Validations": {
+                        "Regular": {
+                            "Expression": "^\\d+$",
+                            "ErrorMessage": "Nhập đúng định dạng số"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row17",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "SignedBy",
+                    "Title": "Họ tên người ký",
+                    "Control": 10,
+                    "props": {
+                        "tabIndex": -1
+                    }
+                },
+                {
+                    "Name": "SignedRole",
+                    "Title": "Chức vụ người ký",
+                    "Control": 10,
+                    "props": {
+                        "tabIndex": -1
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row18",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "ContentStreams",
+                    "Title": "Tệp nội dung",
+                    "Control": 57,
+                    "DocumentStoreId": 1,
+                    "ContentType": "0",
+                    "MultiValue": true,
+                    "Large": true,
+                    "props": {
+                        "maxFileSize": 1048576,
+                        "auto": true,
+                        "customUpload": true
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row19",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "Props.SolveInfo",
+                    "Title": "Ý kiến xử lý",
+                    "Control": 11,
+                    "Validations": {
+                        "MaxLength": 2000
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "Row20",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "TitleInfo",
+                    "Control": 93,
+                    "Title": "Thông tin xử lý",
+                    "ControlClass": "p-col-12 p-md-2"
+                },
+                {
+                    "Name": "ProcessingInfo",
+                    "Control": 92,
+                    "ControlClass": "p-col-12 p-md-10",
+                    "Controls": [
+                        {
+                            "Name": "ProcessingInfoTable",
+                            "Control": 27,
+                            "props": {
+                                "emptyMessage": "Không có dữ liệu!"
+                            },
+                            "Columns": [
+                                {
+                                    "field": "CreatedByName",
+                                    "header": "Người chuyển",
+                                    "style": {
+                                        "width": "15%"
+                                    }
+                                },
+                                {
+                                    "field": "RoleName",
+                                    "header": "Vai trò chuyển",
+                                    "style": {
+                                        "width": "15%"
+                                    }
+                                },
+                                {
+                                    "field": "Created",
+                                    "header": "Ngày chuyển",
+                                    "style": {
+                                        "width": "15%"
+                                    }
+                                },
+                                {
+                                    "field": "Comment",
+                                    "header": "Ý kiến",
+                                    "style": {
+                                        "width": "55%"
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "Buttons": [
+        {
+            "Name": "Bo_Update",
+            "Control": 25,
+            "props": {
+                "label": "Ghi lại",
+                "className": "p-mt-2"
+            }
+        },
+        {
+            "Name": "History",
+            "Control": 25,
+            "props": {
+                "label": "Lịch sử",
+                "className": "p-mt-2"
+            }
+        },
+        {
+            "Name": "Close",
+            "Control": 25,
+            "props": {
+                "label": "Đóng",
+                "className": "p-mt-2"
+            }
+        }
+    ]
+}

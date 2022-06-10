@@ -1,0 +1,115 @@
+{
+  "Title": "",
+  "Controls": [
+{
+      "Name": "Row0",
+      "Control": 92,
+      "Controls": [
+        {
+          "Name": "Title",
+          "Control": 93,
+          "ControlClass": "p-text-bold p-text-center p-col-12",
+          "Title": "TỔNG HỢP TÌNH TRẠNG XỬ LÝ VĂN BẢN ĐẾN CỦA ĐƠN VỊ GIÚP VIỆC"
+        }
+      ]
+    },
+    {
+      "Name": "RowEmpty",
+      "Control": 92,
+      "ControlClass": "p-col-12 p-mb-10",
+      "Controls": [
+        {
+          "Name": "RowEmpty",
+          "Control": 96
+        }
+      ]
+    },
+    {
+      "Name": "Row1",
+      "Control": 92,
+      "Controls": [
+        {
+          "Name": "__.TableUnitIncomingDoc",
+          "Control": 27,
+          "HasFunction": true,
+          "FunctionProperty": "props__onRowDoubleClick:#props__rowClassName",
+          "props": {
+            "className": "ed-form-control p-col-12 p-md-12",
+            "selectionMode": "checkbox",
+            "lazy": true,
+            "emptyMessage": "Không có dữ liệu",
+            "paginator": true,
+            "paginatorTemplate": "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+            "currentPageReportTemplate": "Từ {first} tới {last} của {totalRecords} Bản ghi",
+            "style": {
+              "cursor": "pointer"
+            },
+            "onRowDoubleClick": "({data}) => { let endpoint = 'edoc/DOC/Common/GetDocumentByToDoListId?todoListId=<%=ToDoListID%>&documentId=<%=DocumentID%>&getDocLink=true&getDocFromSource=true&isIgnore=true'; let gridName = '__.TableRegisteredIncomingDoc:#__.TableNotRegisterIncomingDoc'; let resetData = () => { refreshGrid(gridName) }; toDoFormRef?.current?.OpenIncomingDocument(data, gridName, resetData, endpoint, '', null);  }",
+            "rowClassName": "(data) => { return {'p-text-bold-500': data?.Status === 0, 'p-text-red':data?.UrgentLevel !== 'THUONG'} }"
+          },
+          "Request": {
+            "method": "post",
+            "endpoint": "edoc/DOC/IncomingDocs/GetMyTodoListSearch",
+            "payload": {
+              "DocumentStoreId": "1",
+              "DocNo": 0,
+              "Notation": "",
+              "SoPhieuTrinh": "",
+              "SoPhieuGui": "",
+              "SoNgayDaTrinh": 0,
+              "SenderName": "",
+              "PhaiTheoDoi": false,
+              "IsDraft": true,
+              "AssignedType": -1,
+              "OrgCode": "",
+              "Body": "",
+              "Page": 1,
+              "PageSize": 10,
+              "OrderBy": "Created",
+              "Type": 0,
+              "DepartmentCode": ""
+            }
+          },
+          "CustomColumns": [],
+          "Columns": [
+            {
+              "className": "width5 p-text-center",
+              "field": "STT",
+              "header": "STT"
+            },
+            {
+              "className": "width40",
+              "field": "SenderName",
+              "header": "Đơn vị/ Phòng Ban"
+            },
+            {
+              "className": "width10",
+              "field": "InDate_Processing",
+              "header": "TH - Đang xử lý"
+            },
+            {
+              "className": "width10",
+              "field": "InDate_Done",
+              "header": "TH - Đã xử lý"
+            },
+            {
+              "className": "width10",
+              "field": "OutDate_Processing",
+              "header": "QH - Đang xử lý"
+            },
+            {
+              "className": "width10",
+              "field": "OutDate_Done",
+              "header": "QH - Đã xử lý"
+            },
+            {
+              "className": "width15",
+              "field": "SumaryQuatity",
+              "header": "Tổng số"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

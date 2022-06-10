@@ -1,0 +1,85 @@
+{
+    "Title": "BÁO CÁO DỮ LIỆU NGHIỆP VỤ TRONG NGÀY",
+    "Controls": [{
+            "Name": "Row1",
+            "Control": 92,
+            "Controls": [{
+                    "Name": "ReportDate",
+                    "Control": 1,
+                    "Title": "Ngày báo cáo",
+                    "props": {
+                        "showIcon": true,
+                        "showOnFocus": false,
+                        "mask": "99/99/9999",
+                        "dateFormat": "dd/mm/yy"
+                    },
+                    "Validations": {
+                        "Required": true
+                    }
+                }
+            ]
+        }, {
+            "Name": "RowBtn",
+            "Control": 92,
+            "Controls": [{
+                    "Name": "Search",
+                    "Control": 25,
+                    "props": {
+                        "label": "Tìm kiếm",
+                        "className": "p-mt-2"
+                    }
+                }
+            ]
+        }, {
+            "Name": "Row11",
+            "Control": 92,
+            "Controls": [{
+                    "Control": 27,
+                    "Name": "InviteCalendarTable",
+					"DisableAutobind": true,
+                    "Request": {
+                        "method": "post",
+                        "endpoint": "edoc/rpt/DecisionSupport/IntegratedEcustoms",
+						 "payload": {     
+                        }
+                    },
+                    "Columns": [{
+                            "field": "LOAI_TK",
+                            "header": "Loại tờ khai"
+                        }, {
+                            "field": "SO_TK_NHAP_DK_MOI",
+                            "header": ""
+                        }, {
+                            "field": "SO_TK_NHAP_HOAN_THANH",
+                            "header": "Ngày họp đến"
+                        }, {
+                            "field": "SO_TK_NHAP_HUY",
+                            "header": "Địa điểm"
+                        }, {
+                            "field": "SO_TK_NHAP_SUA",
+                            "header": "Chủ trì"
+                        }, {
+                            "field": "GIA_TRI_NHAP",
+                            "header": "Nội dung"
+                        }, {
+                            "field": "SO_TK_XUAT_DK_MOI",
+                            "header": "Ngày họp từ"
+                        }, {
+                            "field": "SO_TK_XUAT_HOAN_THANH",
+                            "header": "Ngày họp đến"
+                        }, {
+                            "field": "SO_TK_XUAT_HUY",
+                            "header": "Địa điểm"
+                        }, {
+                            "field": "SO_TK_XUAT_SUA",
+                            "header": "Chủ trì"
+                        }, {
+                            "field": "GIA_TRI_XUAT",
+                            "header": "Nội dung"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

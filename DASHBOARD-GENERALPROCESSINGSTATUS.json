@@ -1,0 +1,80 @@
+{
+    "Title": "",
+    "Controls": [
+        {
+            "Name": "btn_document_count",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "BtnDocumentCount",
+                    "Control": 25,
+                    "props": {
+                        "icon": "pi pi-book",
+                        "className": "p-ml-2 p-button-text",
+                        "label": "Tình hình xử lý công việc của cá nhân"
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "btn_One",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "BtnUnitIncomingDoc",
+                    "Control": 25,
+                    "props": {
+                        "icon": "pi pi-book",
+                        "className": "p-ml-2 p-button-text",
+                        "label": "Tổng hợp tình trạng xl văn bản đến của Đơn vị"
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "btn_Two",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "BtnUnitTask",
+                    "Control": 25,
+                    "props": {
+                        "icon": "pi pi-book",
+                        "className": "p-ml-2 p-button-text",
+                        "label": "Tổng hợp tình trạng xl công việc của Đơn vị"
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "btn_Three",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "BtnGeneralIncomingDoc",
+                    "Control": 25,
+                    "props": {
+                        "icon": "pi pi-book",
+                        "className": "p-ml-2 p-button-text",
+                        "label": "Tổng hợp tình trạng xl văn bản đến của Cục Hải Quan"
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "btn_Four",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "BtnGeneralTask",
+                    "Control": 25,
+                    "props": {
+                        "icon": "pi pi-book",
+                        "className": "p-ml-2 p-button-text",
+                        "label": "Tổng hợp tình trạng xl công việc của Cục Hải Quan"
+                    }
+                }
+            ]
+        }
+    ]
+}

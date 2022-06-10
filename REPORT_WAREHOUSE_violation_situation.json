@@ -1,0 +1,114 @@
+{
+    "Title": "Báo cáo tổng hợp về tình hình vi phạm",
+    "Controls": [{
+            "Name": "Row1",
+            "Control": 92,
+            "Controls": [{
+                    "Name": "OrgUnit",
+                    "Title": "Cục Hải quan",
+                    "Control": 6,
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "http://localhost:5510/api/DecisionSupport/GetCategoryDecisionSupport?typeCategory=CUC",
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "props": {
+                        "showClear": true,
+                        "optionLabel": "NAME",
+                        "optionValue": "ID",
+                        "placeholder": "Tất cả",
+                        "emptyMessage": "Không có dữ liệu"
+                    }
+                }, {
+                    "Name": "SubOrgUnit",
+                    "Title": "Chi cục Hải quan",
+                    "Control": 6,
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "",
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "props": {
+                        "showClear": true,
+                        "optionLabel": "NAME",
+                        "optionValue": "ID",
+                        "placeholder": "Lựa chọn",
+                        "emptyMessage": "Không có dữ liệu"
+                    }
+                }
+            ]
+        }, {
+            "Control": 92,
+            "Name": "Row2",
+            "Controls": [{
+                    "Name": "TermReport",
+                    "Title": "Kỳ báo cáo",
+                    "Control": 6,
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "",
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "props": {
+                        "showClear": true,
+                        "optionLabel": "Name",
+                        "optionValue": "Code",
+                        "emptyMessage": "Không có dữ liệu"
+                    }
+                }
+            ]
+        }, {
+            "Name": "Row3",
+            "Control": 92,
+            "Controls": [{
+                    "Name": "Month",
+                    "Title": "Tháng",
+                    "Control": 6,
+                    "props": {
+                        "optionLabel": "Name",
+                        "optionValue": "Code",
+                        "emptyMessage": "Không có dữ liệu"
+                    },
+                    "Validations": {
+                        "Required": true
+                    }
+                }, {
+                    "Name": "Year",
+                    "Title": "Năm",
+                    "Control": 6,
+                    "props": {
+                        "optionLabel": "Name",
+                        "optionValue": "Code",
+                        "emptyMessage": "Không có dữ liệu"
+                    },
+                    "Validations": {
+                        "Required": true
+                    }
+                }
+            ]
+        }
+    ],
+    "Buttons": [ {
+            "Name": "ViolationSituationRefresh",
+            "Control": 25,
+            "props": {
+                "label": "Làm mới"
+            }
+        }, {
+            "Name": "ViolationSituationExcel",
+            "Control": 25,
+            "props": {
+                "label": "Xuất file excel"
+            }
+        }
+    ]
+}

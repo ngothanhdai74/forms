@@ -1,0 +1,106 @@
+{
+    "Title": "Thông tin tổng hợp về hàng hóa trước thông quan theo đơn vị hải quan và PTVT",
+    "Controls": [{
+            "Name": "Row1",
+            "Control": 92,
+            "Controls": [{
+                    "Name": "OrgUnit",
+                    "Control": 6,
+                    "Title": "Cục Hải quan",
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/rpt/DecisionSupport/GetCategoryDecisionSupport?typeCategory=CUC",
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "props": {
+                        "showClear": true,
+                        "optionValue": "ID",
+                        "optionLabel": "NAME",
+                        "placeholder": "Tất cả",
+                        "emptyMessage": "Không có dữ liệu"
+                    }
+                }, {
+                    "Name": "TransportType",
+                    "Control": 6,
+                    "Title": "Loại hình vận chuyển",
+                    "props": {
+                        "optionLabel": "Name",
+                        "optionValue": "Code",
+                        "emptyMessage": "Không có dữ liệu"
+                    },
+                    "Validations": {
+                        "Required": true
+                    }
+                }
+            ]
+        }, {
+            "Name": "Row2",
+            "Control": 92,
+            "Controls": [{
+                    "Name": "FromDate",
+                    "Title": "Từ ngày",
+                    "Control": 1,
+                    "props": {
+                        "showIcon": true,
+                        "showOnFocus": false,
+                        "mask": "99/99/9999",
+                        "dateFormat": "dd/mm/yy"
+                    },
+                    "Validations": {
+                        "Required": true,
+                        "Formula": {
+                            "Expression": "<%=(ToDate < FromDate)%>",
+                            "ErrorMessage": "Từ ngày không lớn hơn Đến ngày"
+                        }
+                    }
+                }, {
+                    "Name": "ToDate",
+                    "Title": "Đến ngày",
+                    "Control": 1,
+                    "props": {
+                        "showIcon": true,
+                        "showOnFocus": false,
+                        "mask": "99/99/9999",
+                        "dateFormat": "dd/mm/yy"
+                    },
+                    "Validations": {
+                        "Required": true,
+                        "Formula": {
+                            "Expression": "<%=(ToDate < FromDate))%>",
+                            "ErrorMessage": "Từ ngày không lớn hơn Đến ngày"
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "Buttons": [{
+            "Name": "ViewPreGoodsUnit",
+            "Control": 25,
+            "props": {
+                "label": "Xem báo cáo"
+            }
+        }, {
+            "Name": "PreGoodsUnitRefresh",
+            "Control": 25,
+            "props": {
+                "label": "Làm mới"
+            }
+        }, {
+            "Name": "PreGoodsUnitExcel",
+            "Control": 25,
+            "props": {
+                "label": "Xuất file excel"
+            }
+        }, {
+            "Name": "PreGoodsUnitPDF",
+            "Control": 25,
+            "props": {
+                "label": "Xuất file pdf"
+            }
+        }
+    ]
+}

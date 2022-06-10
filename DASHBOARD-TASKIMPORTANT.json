@@ -1,0 +1,107 @@
+{
+  "Title": "",
+  "Controls": [
+    {
+      "Name": "Row1",
+      "Control": 92,
+      "Controls": [
+        {
+          "Name": "__.TableTaskImportant",
+          "Control": 27,
+          "HasFunction": true,
+          "FunctionProperty": "props__onRowDoubleClick:#props__rowClassName",
+          "props": {
+            "className": "ed-form-control p-col-12 p-md-12",
+            "selectionMode": "checkbox",
+            "lazy": true,
+            "emptyMessage": "Không có dữ liệu",
+            "paginator": true,
+            "paginatorTemplate": "FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport",
+            "currentPageReportTemplate": "Từ {first} tới {last} của {totalRecords} Bản ghi",
+            "style": {
+              "cursor": "pointer"
+            },
+            "onRowDoubleClick": "({data}) => { let gridName = '__.TableTaskImportant:#__.TableTaskImportant'; let resetData = () => { refreshGrid(gridName) }; toDoFormRef?.current?.OpenTaskDocument(data, gridName, resetData, '');  }",
+            "rowClassName": "(data) => { return {'p-text-bold-500': data?.Status === 0} }"
+          },
+          "Request": {
+            "method": "post",
+            "endpoint": "edoc/dms/Document/GetMyItemsBySearch",
+            "payload": {
+              "documentStoreID": 5,
+              "props": [
+                    {
+                      "code": "SourceTaskID",
+                      "value": "3"
+                     }
+               ]
+            }
+          },
+          "CustomColumns": [
+            {
+              "Control": 6,
+              "Field": "SourceTaskName",
+              "FieldByQuery": "SourceTaskID",
+              "OptionLabel": "Name",
+              "OptionValue": "Code",
+              "Request": {
+                "method": "get",
+                "endpoint": "edoc/ctl/Catalog/GetByCategory/SourceTask",
+                "cache": {
+                  "enable": true,
+                  "maxAge": 60
+                }
+              }
+            },
+            {
+              "Control": 1,
+              "Field": "ReceivedDate",
+              "FieldByQuery": "ReceivedDate"
+            },
+            {
+              "Control": 1,
+              "Field": "DueDate",
+              "FieldByQuery": "DueDate"
+            },
+            {
+              "Control": 57,
+              "Field": "FileView",
+              "FieldByQuery": "SourceItemID"
+            }
+          ],
+          "Columns": [
+            {
+              "className": "width5",
+              "field": "FileView",
+              "header": "Tệp"
+            },
+            {
+              "className": "width10",
+              "field": "DocLabel",
+              "header": "Số ký hiệu",
+              "filter": true,
+              "filterPlaceholder": "Tìm..."
+            },
+            {
+              "className": "width55",
+              "field": "Brief",
+              "header": "Nội dung công việc trọng tâm",
+              "filter": true,
+              "filterPlaceholder": "Tìm..."
+            },
+            {
+              "className": "width15",
+              "field": "DueDate",
+              "header": "Hạn xử lý"
+            },
+            {
+              "className": "width15",
+              "field": "SourceTaskName",
+              "header": "Nguồn việc"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

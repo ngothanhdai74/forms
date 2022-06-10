@@ -1,0 +1,407 @@
+{
+    "Title": "Tạo mới phiếu giao việc",
+    "Mode": 0,
+    "Controls": [
+        {
+            "Name": "Row1",
+            "Control": 92,
+            "Controls": [
+                {
+                    "Name": "ReporterCode",
+                    "Title": "Người chỉ đạo",
+                    "Control": 6,
+                    "ExtField": "FullName",
+                    "ExtFieldName": "ReporterName",
+                    "Request": {
+                        "method": "get",
+                        "endpoint": "edoc/ums/User/GetDeptLeaders",
+                        "payload": {},
+                        "cache": {
+                            "enable": true,
+                            "maxAge": 60
+                        }
+                    },
+                    "Validations": {
+                        "Required": true
+                    },
+                    "props": {
+                        "optionValue": "Code",
+                        "optionLabel": "FullName"
+                    }
+                },
+                {
+                    "Name": "DocDate",
+                    "Title": "Ngày chỉ đạo",
+                    "Control": 1,
+                    "Validations": {
+                        "Required": true,
+                        "Formula": {
+                            "Expression": "<%=(DocDate > new Date())%>",
+                            "ErrorMessage": "Ngày chỉ đạo không được lớn hơn ngày hiện tại"
+                        }
+                    },
+                    "props": {
+                        "dateFormat": "dd/mm/yy",
+                        "mask": "99/99/9999",
+                        "showIcon": true,
+                        "showButtonBar": true,
+                        "monthNavigator": true,
+                        "yearNavigator": true,
+                        "yearRange": "2000:2030"
+                    }
+                }
+            ]
+        },
+        {
+            "Name": "TabDocumentInfo",
+            "Control": 91,
+            "Expanded": false,
+            "Title": "Thông tin văn bản",
+            "Controls": [
+                {
+                    "Name": "Row2",
+                    "Control": 92,
+                    "Controls": [
+                        {
+                            "Name": "Props.DocLabel",
+                            "Title": "Số ký hiệu",
+                            "Control": 10,
+                            "props": {
+                                "className": "p-col-10"
+                            }
+                        },
+                        {
+                            "Name": "Props.DocDate",
+                            "Title": "Ngày văn bản",
+                            "Control": 1,
+                            "Validations": {
+                                "Formula": {
+                                    "Expression": "<%=(DocDate > DateTime)%>",
+                                    "ErrorMessage": "Ngày văn bản không được lớn hơn Ngày chỉ đạo"
+                                }
+                            },
+                            "props": {
+                                "dateFormat": "dd/mm/yy",
+                                "mask": "99/99/9999",
+                                "showIcon": true,
+                                "showButtonBar": true,
+                                "monthNavigator": true,
+                                "yearNavigator": true,
+                                "yearRange": "2000:2030",
+                                "showOnFocus": false
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "Row3",
+                    "Control": 92,
+                    "Controls": [
+                        {
+                            "Name": "Props.Brief",
+                            "Title": "Trích yếu",
+                            "Control": 11,
+                            "props": {
+                                "rows": 2,
+                                "autoResize": true
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "TabJobInfo",
+            "Control": 91,
+            "Title": "Thông tin phiếu giao việc",
+            "Controls": [
+                {
+                    "Name": "Row4",
+                    "Control": 92,
+                    "Controls": [
+                        {
+                            "Name": "DocumentRegisterID",
+                            "ExtFieldName": "DocumentRegisterName",
+                            "ExtField": "Name",
+                            "Title": "Loại nhiệm vụ",
+                            "Control": 6,
+                            "Request": {
+                                "method": "get",
+                                "endpoint": "edoc/dms/DocumentRegister/GetByDocumentStoreId?documentStoreId=5",
+                                "cache": {
+                                    "enable": true,
+                                    "maxAge": 60
+                                }
+                            },
+                            "props": {
+                                "optionLabel": "Name",
+                                "optionValue": "Code"
+                            },
+                            "Validations": {
+                                "Required": true
+                            }
+                        },
+                        {
+                            "Name": "Props.SourceTaskID",
+                            "Title": "Nguồn việc",
+                            "Control": 6,
+                            "Request": {
+                                "method": "get",
+                                "endpoint": "edoc/ctl/Catalog/GetByCategory/SourceTask",
+                                "cache": {
+                                    "enable": true,
+                                    "maxAge": 60
+                                }
+                            },
+                            "props": {
+                                "optionLabel": "Name",
+                                "optionValue": "Code"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "Row4.5",
+                    "Control": 92,
+                    "Controls": [
+                        {
+                            "Title": "Ghi chú",
+                            "Name": "Notes",
+                            "Control": 11,
+                            "props": {
+                                "rows": 1,
+                                "autoResize": true
+                            }
+                        },
+                        {
+                            "Name": "UrgentLevel",
+                            "Title": "Độ khẩn",
+                            "Control": 6,
+                            "ExtField": "Name",
+                            "ExtFieldName": "UrgentLevelName",
+                            "Request": {
+                               "method": "get",
+                               "endpoint": "edoc/ctl/Catalog/GetByCategory/UrgentLevel",
+                               "cache": {
+                                  "enable": true,
+                                  "maxAge": 60
+                               }
+                            },
+                            "props": {
+                               "optionLabel": "Name",
+                               "optionValue": "Code"
+                            }
+                         }
+                    ]
+                },
+                {
+                    "Name": "Row5",
+                    "Control": 92,
+                    "Controls": [
+                        {
+                            "Name": "ContentStreams",
+                            "Title": "Tệp nội dung",
+                            "Control": 57,
+                            "DocumentStoreId": 5,
+                            "ContentType": "0",
+                            "MultiValue": true,
+                            "Large": true,
+                            "props": {
+                                "maxFileSize": 1048576,
+                                "auto": true,
+                                "customUpload": true
+                            }
+                        }
+                    ]
+                },
+                {
+                    "Name": "Row6",
+                    "Control": 92,
+                    "Controls": [
+                        {
+                            "Name": "SourceDocTable",
+                            "Control": 27,
+                            "props": {
+                                "header": "Văn bản gốc",
+                                "emptyMessage": "Không có dữ liệu"
+                            },
+                            "Columns": [
+                                {
+                                    "field": "DocLabel",
+                                    "header": "Số kí hiệu"
+                                },
+                                {
+                                    "field": "DocumentStoreID",
+                                    "header": "Loại văn bản"
+                                },
+                                {
+                                    "field": "DocDate",
+                                    "header": "Ngày văn bản"
+                                },
+                                {
+                                    "field": "Brief",
+                                    "header": "Trích yếu"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Name": "Row7",
+                    "Control": 92,
+                    "Controls": [
+                        {
+                            "Name": "RelativeDocTable",
+                            "Control": 27,
+                            "props": {
+                                "selectionMode": "checkbox",
+                                "header": "Văn bản liên quan",
+                                "emptyMessage": "Không có dữ liệu"
+                            },
+                            "Columns": [
+                                {
+                                    "selectionMode": "multiple",
+                                    "headerStyle": {
+                                        "width": "3em"
+                                    }
+                                },
+                                {
+                                    "field": "DocLabel",
+                                    "header": "Số kí hiệu"
+                                },
+                                {
+                                    "field": "DocType",
+                                    "header": "Loại văn bản"
+                                },
+                                {
+                                    "field": "DocDate",
+                                    "header": "Ngày văn bản"
+                                },
+                                {
+                                    "field": "Brief",
+                                    "header": "Trích yếu"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Name": "Row8",
+                    "Control": 92,
+                    "ControlClass": "button-right-align",
+                    "Controls": [
+                        {
+                            "Name": "AddRelativeDocument",
+                            "Control": 25,
+                            "props": {
+                                "className": "p-button-rounded p-button-text",
+                                "icon": "pi pi-plus"
+                            }
+                        },
+                        {
+                            "Name": "CancelRelativeDocument",
+                            "Control": 25,
+                            "props": {
+                                "className": "p-button-rounded p-button-text",
+                                "icon": "pi pi-times"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "TabJobs",
+            "Control": 91,
+            "Title": "Danh sách phiếu giao việc",
+            "Controls": [
+                {
+                    "Name": "JobsTable",
+                    "Control": 27,
+                    "props": {
+                        "selectionMode": "radiobutton",
+                        "emptyMessage": "Không có dữ liệu"
+                    },
+                    "Columns": [
+                        {
+                            "selectionMode": "single",
+                            "headerStyle": {
+                                "width": "3em"
+                            }
+                        },
+                        {
+                            "field": "TaskName",
+                            "header": "Tên Phiếu giao việc"
+                        },
+                        {
+                            "field": "PresideRecipients",
+                            "header": "Chủ trì"
+                        },
+                        {
+                            "field": "CoordinatedRecipients",
+                            "header": "Phối hợp"
+                        },
+                        {
+                            "field": "DueDate",
+                            "header": "Hạn xử lý"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Row9",
+            "Control": 92,
+            "ControlClass": "button-right-align",
+            "Controls": [
+                {
+                    "Name": "AddJob",
+                    "Control": 25,
+                    "props": {
+                        "label": "Thêm",
+                        "className": "p-mr-2 p-mb-3 "
+                    }
+                },
+                {
+                    "Name": "UpdateJob",
+                    "Control": 25,
+                    "props": {
+                        "label": "Sửa",
+                        "className": "p-mr-2 p-mb-3 "
+                    }
+                },
+                {
+                    "Name": "DeleteJob",
+                    "Control": 25,
+                    "props": {
+                        "label": "Xóa",
+                        "className": "p-mr-2 p-mb-3 "
+                    }
+                }
+            ]
+        }
+    ],
+    "Buttons": [
+        {
+            "Control": 25,
+            "Name": "Save",
+            "props": {
+                "label": "Ghi lại"
+            }
+        },
+        {
+            "Control": 25,
+            "Name": "CopyToSave",
+            "props": {
+                "label": "Ghi => Sao"
+            }
+        },
+        {
+            "Name": "CreateDocumentAndTransfer",
+            "Control": 25,
+            "props": {
+                "label": "Chuyển xử lý"
+            }
+        }
+    ]
+}
